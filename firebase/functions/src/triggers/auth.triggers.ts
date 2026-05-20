@@ -1,0 +1,1 @@
+// auth.triggers TypeScript module

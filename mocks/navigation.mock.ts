@@ -1,0 +1,1 @@
+// navigation.mock TypeScript module

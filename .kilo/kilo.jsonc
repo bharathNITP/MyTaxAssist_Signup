@@ -1,0 +1,7 @@
+{
+  "projectId": "mytaxassist",
+  "version": "1.0.0",
+  "agentConfig": {
+    "agentsDir": "./.kilo/agents"
+  }
+}
