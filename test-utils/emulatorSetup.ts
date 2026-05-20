@@ -1,0 +1,1 @@
+// emulatorSetup TypeScript module

@@ -1,0 +1,1 @@
+// document.callable TypeScript module

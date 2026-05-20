@@ -1,0 +1,1 @@
+// document.triggers TypeScript module

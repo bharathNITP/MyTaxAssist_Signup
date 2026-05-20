@@ -1,0 +1,1 @@
+// case.types TypeScript module

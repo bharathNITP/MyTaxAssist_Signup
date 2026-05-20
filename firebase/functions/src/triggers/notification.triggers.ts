@@ -1,0 +1,1 @@
+// notification.triggers TypeScript module

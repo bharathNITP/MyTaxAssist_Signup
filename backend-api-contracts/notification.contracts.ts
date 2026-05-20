@@ -1,0 +1,1 @@
+// notification.contracts TypeScript module
