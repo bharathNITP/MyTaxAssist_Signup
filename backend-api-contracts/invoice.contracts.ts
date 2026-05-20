@@ -1,0 +1,1 @@
+// invoice.contracts TypeScript module

@@ -1,0 +1,1 @@
+// firebase.mock TypeScript module

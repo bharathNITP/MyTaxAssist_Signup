@@ -1,0 +1,1 @@
+// colors TypeScript module

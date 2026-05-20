@@ -1,0 +1,1 @@
+// zustand.mock TypeScript module
