@@ -131,11 +131,11 @@ Define, maintain, and protect the architectural integrity of MyTaxAssist's backe
 - `/frontend/types`
 - `/docs`
 - `/design`
-- `/firebase/config
-- `/firebase/emulators
-- `/firebase/indexes
-- `/firebase/scripts
-- `/firebase/storage-rules
+- `/firebase/config`
+- `/firebase/emulators`
+- `/firebase/indexes`
+- `/firebase/scripts`
+- `/firebase/storage-rules`
 
 
 ### Forbidden Paths
