@@ -41,6 +41,200 @@ Build and maintain a secure, scalable, production-ready Firebase infrastructure 
 
 ---
 
+## Supported Task Types
+
+Every task must specify a TASK TYPE.
+
+Allowed values:
+
+- FIRESTORE_RULES
+- STORAGE_RULES
+- AUTH_CONFIGURATION
+- CLOUD_FUNCTION_TRIGGER_WIRING
+- FCM_DELIVERY_INFRASTRUCTURE
+- FIREBASE_EMULATOR_SETUP
+- FIREBASE_INDEX_MANAGEMENT
+- FIREBASE_SECURITY_AUDIT
+- FIREBASE_ENVIRONMENT_CONFIGURATION
+- FIREBASE_DEPLOYMENT_CONFIGURATION
+- FIREBASE_MONITORING_LOGGING
+- FIREBASE_PERFORMANCE_OPTIMIZATION
+- FIREBASE_ROLE_ENFORCEMENT
+- FIREBASE_TESTING
+- FIREBASE_ARCHITECTURE_REVIEW
+- FIREBASE_REFACTOR
+- FIREBASE_INCIDENT_RESPONSE
+- FIREBASE_CLARIFICATION
+
+If TASK TYPE is missing or invalid:
+- Stop work
+- Ask for correction
+- Do not proceed
+
+---
+
+## Minimum Required Context
+
+Every task must include:
+
+- TASK TYPE
+- OBJECTIVE
+- TARGET ENVIRONMENT
+- AFFECTED FIREBASE MODULES
+- SECURITY REQUIREMENTS
+- ACCEPTANCE CRITERIA
+
+Additional requirements by task type:
+
+### FIRESTORE_RULES
+Must include:
+- Collection names
+- Access model
+- Allowed operations
+- Ownership rules
+- Role restrictions
+
+### STORAGE_RULES
+Must include:
+- Storage paths
+- Allowed file types
+- Max file size
+- Upload ownership rules
+- Download permissions
+
+### AUTH_CONFIGURATION
+Must include:
+- Auth providers
+- Role model
+- Claims requirements
+- Session/security expectations
+
+### CLOUD_FUNCTION_TRIGGER_WIRING
+Must include:
+- Trigger type
+- Trigger source
+- Trigger event
+- Backend service function
+- Retry/idempotency expectations
+
+### FCM_DELIVERY_INFRASTRUCTURE
+Must include:
+- Notification trigger source
+- Backend payload source
+- Token ownership model
+- Delivery expectations
+
+### FIREBASE_TESTING
+Must include:
+- Systems under test
+- Emulator requirements
+- Required test categories
+
+### FIREBASE_ARCHITECTURE_REVIEW
+Must include:
+- Review scope
+- Systems to review
+- Known pain points
+- Review objective
+
+If mandatory context is missing:
+1. Stop work
+2. Ask only the minimum clarification questions required
+3. Do not assume missing requirements
+4. Do not implement speculative Firebase architecture
+
+---
+
+## Clarification Protocol
+
+Ask clarification questions ONLY when:
+- Authentication model is unclear
+- Ownership rules are unclear
+- Trigger behavior is unclear
+- Backend service dependencies are missing
+- Environment separation is unclear
+- Existing Firebase architecture is unclear
+- Sensitive data handling is unclear
+- Collection/storage scope is unclear
+- Security expectations are undefined
+
+Clarification rules:
+- Ask the minimum number of questions required
+- Group related questions together
+- Prefer concise and structured questions
+- Do not ask questions already answered in provided docs/files
+- Do not continue implementation while waiting for clarification
+
+If ambiguity is low-risk:
+- Reuse existing Firebase patterns
+- Reuse existing Firebase utilities
+- Follow existing naming conventions
+- Follow existing modular structure
+- Reuse existing indexes/rules/helpers where appropriate
+
+---
+
+## Standard Prompt Structure
+
+Tasks should follow this structure:
+
+TASK TYPE:
+OBJECTIVE:
+BUSINESS CONTEXT:
+TARGET ENVIRONMENT:
+AFFECTED FIREBASE MODULES:
+COLLECTIONS/STORAGE PATHS:
+AUTH/ROLE REQUIREMENTS:
+BACKEND SERVICE DEPENDENCIES:
+INPUTS:
+EXPECTED OUTPUT:
+SECURITY REQUIREMENTS:
+PERFORMANCE REQUIREMENTS:
+TESTING REQUIREMENTS:
+CONSTRAINTS:
+FILES/PATHS INVOLVED:
+ACCEPTANCE CRITERIA:
+KNOWN RISKS:
+OPEN QUESTIONS:
+
+If critical sections are missing:
+- Stop and request clarification
+
+---
+## Context Quality Rules
+
+Invalid task examples:
+- "secure Firebase"
+- "add notifications"
+- "fix backend"
+- "improve auth"
+- "make uploads work"
+
+Tasks must specify:
+- exact Firebase system
+- measurable objective
+- affected collections/storage paths
+- backend dependencies
+- expected deliverables
+
+Never assume:
+- business logic
+- backend workflows
+- role hierarchy
+- ownership rules
+- trigger behavior
+- notification content
+- environment structure
+- API contracts
+
+If workflow context is unclear:
+- Stop
+- Ask for clarification
+- Do not invent infrastructure behavior
+  
+  
+---
+
 ## Scope
 
 ### Allowed
@@ -98,6 +292,116 @@ Build and maintain a secure, scalable, production-ready Firebase infrastructure 
 - Ensure Firebase observability and logging
 - Secure file upload/storage flows
 - Maintain environment separation (dev/staging/prod)
+
+---
+
+## Firebase Pattern Reuse Rules
+
+Before creating new Firebase infrastructure:
+1. Review existing Firebase architecture
+2. Reuse existing utilities whenever possible
+3. Extend existing patterns before creating new ones
+4. Follow existing naming conventions
+5. Document justification for introducing new infrastructure patterns
+
+Avoid:
+- duplicate triggers
+- duplicate indexes
+- duplicate Firebase utilities
+- fragmented rule structures
+- speculative collections/functions
+
+---
+
+## Environment Enforcement Rules
+
+Every Firebase implementation must support:
+- Development
+- Staging
+- Production
+
+Requirements:
+- Strict environment separation
+- No hardcoded environment values
+- Environment-aware configs only
+- Never share production credentials
+- Never test against production
+
+If environment behavior is unclear:
+- Reuse existing environment patterns
+- Ask clarification only if environment differences materially affect security or infrastructure behavior
+
+---
+
+## Security Enforcement Rules
+
+Every Firebase implementation must:
+- Deny by default
+- Enforce authentication
+- Validate ownership
+- Prevent privilege escalation
+- Use least-privilege access
+- Prevent unrestricted wildcard access
+- Validate inputs server-side
+- Protect sensitive data
+
+Cloud Functions must:
+- Remain thin
+- Delegate business logic to Backend services
+- Prevent recursive triggers
+- Prevent duplicate writes
+- Handle retries safely
+
+Do not weaken security restrictions unless explicitly approved by system architecture ownership.
+
+---
+
+## Firebase State & Reliability Rules
+
+Every Firebase infrastructure workflow must consider:
+- Retry handling
+- Failure handling
+- Duplicate event handling
+- Logging
+- Monitoring
+- Emulator validation
+- Scalability
+
+Every trigger-based workflow must include:
+- Idempotency handling
+- Structured logging
+- Timeout safety
+- Error isolation
+- Environment awareness
+
+Do not omit operational safeguards unless explicitly approved.
+
+---
+
+## Safe Assumption Policy
+
+Allowed safe assumptions:
+- Existing Firebase utility usage
+- Existing naming conventions
+- Existing modular structure
+- Existing logging patterns
+- Existing environment conventions
+- Existing emulator setup patterns
+
+Forbidden assumptions:
+- Business logic
+- Tax workflows
+- Backend service contracts
+- User permissions
+- Notification content
+- Authentication flows
+- Ownership rules
+- Trigger sequencing
+- API responses
+
+When uncertain:
+- Stop
+- Ask
 
 ---
 
