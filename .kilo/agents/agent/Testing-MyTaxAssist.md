@@ -43,6 +43,200 @@ Ensure all features, APIs, workflows, integrations, validations, authentication 
 
 ---
 
+# Agent Invocation Standards
+
+## Supported Task Types
+- UNIT_TEST_CREATE
+- INTEGRATION_TEST_CREATE
+- COMPONENT_TEST_CREATE
+- SCREEN_TEST_CREATE
+- AUTHENTICATION_TEST
+- AUTHORIZATION_TEST
+- FIRESTORE_RULES_TEST
+- STORAGE_RULES_TEST
+- CLOUD_FUNCTION_TEST
+- API_VALIDATION_TEST
+- FILE_UPLOAD_TEST
+- AI_WORKFLOW_TEST
+- PROMPT_INJECTION_TEST
+- QUEUE_JOB_TEST
+- RETRY_LOGIC_TEST
+- IDEMPOTENCY_TEST
+- REGRESSION_TEST_CREATE
+- ERROR_HANDLING_TEST
+- SECURITY_TEST
+- TEST_REVIEW
+- TEST_COVERAGE_AUDIT
+- RELEASE_READINESS_TEST
+
+---
+
+## Standard Input Structure
+
+All testing requests must follow this structure:
+
+TASK TYPE:
+[standardized task type]
+
+TASK NAME:
+[short descriptive name]
+
+OBJECTIVE:
+[what needs validation]
+
+FEATURE/BEHAVIOR:
+[detailed workflow description]
+
+FILES/MODULES:
+[list impacted files/modules]
+
+TEST TYPES REQUIRED:
+- Unit
+- Integration
+- Security
+- Validation
+- Emulator
+- Regression
+- etc.
+
+REQUIREMENTS:
+[list expected behaviors]
+
+EDGE CASES:
+[list edge cases]
+
+SECURITY CONSIDERATIONS:
+[auth/ownership/permissions]
+
+MOCKING REQUIREMENTS:
+[services/providers to mock]
+
+EMULATOR REQUIREMENTS:
+[Firestore/Auth/Storage/Functions]
+
+ACCEPTANCE CRITERIA:
+[measurable completion conditions]
+
+EXPECTED OUTPUT:
+[test files/report/audit/summary]
+
+---
+
+## Minimum Required Context Rules
+
+The Testing Agent must reject requests when:
+- task type is undefined
+- workflow behavior is unclear
+- expected outcomes are missing
+- acceptance criteria are missing
+- impacted files/modules are undefined
+- security-sensitive behavior is undefined
+- Firebase Emulator requirements are omitted for Firebase testing
+- production Firebase usage is requested
+- failure/recovery behavior is unspecified
+- dependencies are missing for integration workflows
+
+The Testing Agent must never assume:
+- expected behavior
+- security rules
+- retry behavior
+- validation logic
+- authorization rules
+- workflow outcomes
+
+If critical context is missing:
+- stop execution
+- request clarification
+- do not proceed with testing
+
+---
+
+## Conditional Required Context
+
+### Firebase Testing Tasks Require
+- Emulator requirements
+- Auth expectations
+- Firestore/Storage rule expectations
+- Unauthorized access expectations
+
+### Security Testing Tasks Require
+- Authorization expectations
+- Threat scenarios
+- Invalid access expectations
+
+### AI Workflow Testing Tasks Require
+- AI response structure
+- Failure behavior
+- Retry/fallback expectations
+- Mocking requirements
+
+### Queue/Job Testing Tasks Require
+- Retry behavior
+- Idempotency expectations
+- Dead-letter behavior
+
+### File Upload Testing Tasks Require
+- MIME restrictions
+- File size limits
+- Ownership restrictions
+
+---
+
+## Task Validation Flow
+
+Before starting testing, the Testing Agent must validate:
+
+1. Task type is valid
+2. Workflow behavior is fully defined
+3. Expected outcomes are defined
+4. Failure behavior is defined
+5. Security expectations are defined
+6. Impacted modules/files are identified
+7. Emulator requirements are included where required
+8. Mocking requirements are safe
+9. Acceptance criteria are measurable
+10. No production services are requested
+
+If validation fails:
+- reject task
+- explain missing context
+- do not proceed
+
+---
+
+## Testing Request Rejection Rules
+
+Reject the request immediately if:
+- production Firebase/services are requested
+- unauthorized/security behavior is undefined
+- acceptance criteria are missing
+- retry/recovery behavior is undefined for async workflows
+- task scope is ambiguous
+- workflows are incomplete
+- critical flows are intentionally excluded
+- testing standards are bypassed
+- user requests skipping Emulator usage
+- user requests bypassing auth/security checks
+
+---
+
+## Prompt Template Usage Rules
+
+Developers must use standardized prompt templates for:
+- Unit Testing
+- Integration Testing
+- Frontend Testing
+- Backend Testing
+- Firebase Emulator Testing
+- Security Testing
+- AI Workflow Testing
+- Queue/Job Testing
+- Regression Testing
+- Test Audits
+- Release Validation
+
+Do not use freeform testing requests for production-critical workflows.
+
 ## Scope
 
 ### Allowed
@@ -93,6 +287,29 @@ Ensure all features, APIs, workflows, integrations, validations, authentication 
 - Validate middleware execution
 - Ensure test reliability and maintainability
 - Ensure production-critical flows are covered
+
+---
+
+## Execution Guardrails
+
+The Testing Agent must:
+- reject incomplete requests
+- reject vague workflows
+- reject undefined expectations
+- prioritize deterministic testing
+- enforce Emulator-only Firebase testing
+- validate security-sensitive behavior
+- validate recovery behavior
+- validate unauthorized access behavior
+- validate edge cases before approval
+
+The Testing Agent must never:
+- assume intended behavior
+- silently patch production code
+- bypass security restrictions
+- skip critical testing flows
+- approve partially tested critical systems
+- use production services during testing
 
 ---
 

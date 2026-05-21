@@ -37,6 +37,225 @@ Build a scalable, responsive, modern, and production-ready mobile application fo
 
 ---
 
+## Supported Task Types
+
+Every task must specify a TASK TYPE.
+
+Allowed values:
+
+- SCREEN_DEVELOPMENT
+- COMPONENT_DEVELOPMENT
+- API_INTEGRATION
+- FIREBASE_INTEGRATION
+- FORM_IMPLEMENTATION
+- STATE_MANAGEMENT
+- NAVIGATION_UPDATE
+- FILE_UPLOAD
+- CHAT_INTERFACE
+- PERFORMANCE_OPTIMIZATION
+- REFACTOR
+- TESTING
+- ACCESSIBILITY_FIX
+- RESPONSIVE_FIX
+- CONFIGURATION_UPDATE
+- VALIDATION_IMPROVEMENT
+- CLARIFICATION
+
+If TASK TYPE is missing or invalid:
+- Stop work
+- Ask for correction
+- Do not proceed
+
+---
+
+## Minimum Required Context
+
+Every task must include:
+
+- TASK TYPE
+- OBJECTIVE
+- TARGET FRONTEND SCOPE
+- REFERENCES
+- ACCEPTANCE CRITERIA
+- DELIVERABLES
+
+Additional requirements by task type:
+
+### SCREEN_DEVELOPMENT
+Must include:
+- Screen name
+- Screen purpose
+- Required data sources
+- Required states
+- Navigation behavior
+
+### COMPONENT_DEVELOPMENT
+Must include:
+- Component name
+- Component purpose
+- Required props
+- Usage context
+- Required states/interactions
+
+### API_INTEGRATION
+Must include:
+- API contract reference
+- Request/response expectations
+- Error handling expectations
+- Auth requirements
+
+### FIREBASE_INTEGRATION
+Must include:
+- Firebase service type
+- Existing config/service reference
+- Required listener behavior
+- Error handling expectations
+
+### FORM_IMPLEMENTATION
+Must include:
+- Field list
+- Required vs optional fields
+- Validation requirements
+- Submission behavior
+
+### STATE_MANAGEMENT
+Must include:
+- State ownership expectations
+- Existing store/hook references
+- Persistence requirements
+- Data update behavior
+
+### NAVIGATION_UPDATE
+Must include:
+- Entry route
+- Destination routes
+- Protected/public behavior
+- Navigation constraints
+
+### FILE_UPLOAD
+Must include:
+- Allowed formats
+- Upload size limits
+- Upload destination/service
+- Error handling behavior
+
+### CHAT_INTERFACE
+Must include:
+- Chat purpose
+- Message types
+- Required user actions
+- Backend/API references
+
+### PERFORMANCE_OPTIMIZATION
+Must include:
+- Current performance issue
+- Measurable symptoms
+- Affected screens/components
+
+### TESTING
+Must include:
+- Testing target
+- Coverage expectations
+- Required interaction scenarios
+
+If mandatory context is missing:
+1. Stop work
+2. Ask only the minimum clarification questions required
+3. Do not assume missing requirements
+4. Do not partially implement speculative functionality
+
+---
+
+## Clarification Protocol
+
+Ask clarification questions ONLY when:
+- Missing context blocks implementation decisions
+- API behavior is unclear
+- State ownership is undefined
+- Navigation behavior is unclear
+- Required contracts/references are missing
+- Validation behavior is undefined
+- Responsive behavior is unclear
+- Existing architecture references are unavailable
+
+Clarification rules:
+- Ask the minimum number of questions required
+- Group related questions together
+- Prefer concise and structured questions
+- Do not ask questions already answered in provided docs/files
+- Do not continue speculative implementation while waiting for clarification
+
+If ambiguity is low-risk:
+- Reuse existing component patterns
+- Follow existing architecture conventions
+- Follow existing theme/token usage
+- Reuse existing hooks/stores/services
+- Avoid introducing new abstractions
+
+---
+
+## Standard Task Structure
+
+Tasks should follow this structure:
+
+TASK TYPE:
+OBJECTIVE:
+BUSINESS CONTEXT:
+TARGET FRONTEND SCOPE:
+USER FLOW:
+DATA SOURCES:
+API/FIREBASE REFERENCES:
+STATE REQUIREMENTS:
+VALIDATION REQUIREMENTS:
+RESPONSIVE REQUIREMENTS:
+PLATFORM REQUIREMENTS:
+REUSE REQUIREMENTS:
+ACCESSIBILITY REQUIREMENTS:
+CONSTRAINTS:
+ACCEPTANCE CRITERIA:
+DELIVERABLES:
+REFERENCES:
+OPEN QUESTIONS:
+
+If critical sections are missing:
+- Stop and request clarification
+
+---
+
+## Context Quality Rules
+
+Invalid task examples:
+- "Improve frontend"
+- "Fix app"
+- "Optimize UI"
+- "Refactor everything"
+- "Handle chat feature"
+- "Build dashboard"
+
+Tasks must specify:
+- exact screen/component/flow
+- measurable implementation objective
+- affected frontend modules
+- expected deliverables
+- success criteria
+
+Never assume:
+- backend behavior
+- API responses
+- business rules
+- validation logic
+- user permissions
+- workflow sequencing
+- Firebase security behavior
+- navigation architecture
+
+If workflow or backend behavior is unclear:
+- Stop
+- Ask for clarification
+- Do not invent functionality
+
+---
+
 ## Scope
 
 ### Allowed
@@ -75,6 +294,147 @@ Build a scalable, responsive, modern, and production-ready mobile application fo
 - Handle frontend state management
 - Ensure accessibility
 - Fix frontend bugs and UI inconsistencies
+
+---
+
+## Reuse & Architecture Rules
+
+Before creating new:
+- Components
+- Hooks
+- Stores
+- Services
+- Utilities
+
+You must:
+1. Review existing frontend architecture
+2. Reuse existing patterns whenever possible
+3. Extend existing implementations before creating new ones
+4. Justify creation of new abstractions when avoidable
+
+Avoid:
+- duplicate components
+- duplicate hooks
+- unnecessary utilities
+- speculative abstractions
+- fragmented architecture
+
+---
+
+## Responsive Enforcement Rules
+
+Every screen must support:
+- Mobile layout
+- Tablet layout
+- Desktop/web layout
+
+If responsive behavior is unclear:
+- Default to mobile-first stacking
+- Reuse existing responsive patterns
+- Ask clarification only if layout decisions materially affect functionality
+
+---
+
+## Theme Enforcement Rules
+
+Every screen and component must support:
+- Dark theme
+- Light theme
+
+Requirements:
+- Existing token system only
+- No hardcoded colours
+- NativeWind only
+- No ad-hoc theme variants
+- Follow existing theme conventions
+
+---
+
+## Frontend State Enforcement
+
+Every screen must include:
+- Default state
+- Loading state
+- Empty state
+- Error state
+
+Every interactive component must include:
+- Default
+- Hover (web where applicable)
+- Active
+- Disabled
+- Error
+- Loading (where applicable)
+
+Do not omit states unless explicitly approved.
+
+---
+
+## Safe Assumption Policy
+
+Allowed safe assumptions:
+- Existing component patterns
+- Existing token usage
+- Existing spacing conventions
+- Existing typography scale
+- Existing hook/service architecture
+- Standard responsive stacking
+
+Forbidden assumptions:
+- Backend capabilities
+- API contracts
+- Business logic
+- Validation rules
+- User permissions
+- Tax workflows
+- Firebase security behavior
+- Navigation flow
+- AI behavior
+
+When uncertain:
+- Stop
+- Ask
+
+---
+
+## Dependency Usage Rules
+
+Before adding any dependency:
+1. Verify existing stack cannot solve the requirement
+2. Minimize bundle impact
+3. Avoid overlapping libraries
+4. Confirm dependency necessity
+
+Never add dependencies speculatively.
+
+---
+
+## Unknown Information Handling
+
+If required information is unknown:
+- Explicitly mark it as UNKNOWN
+- Stop implementation for blocked areas
+- Request clarification before proceeding
+
+Never replace unknown requirements with assumptions.
+
+---
+
+## Recommended Clarification Response Format
+
+Insufficient implementation context.
+
+Missing Information:
+- [missing item]
+- [missing item]
+
+Required Before Proceeding:
+- [required reference/detail]
+
+Current Blocker:
+- [reason]
+
+Implementation paused pending clarification.
 
 ---
 
