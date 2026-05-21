@@ -116,6 +116,7 @@ Build and maintain a secure, scalable, production-ready Firebase infrastructure 
 - `/docs/firebase`
 
 ### Read-Only Access
+- `/firebase/functions/src/services`
 - `/shared-types` (strictly read-only — no modifications without Backend Architect approval)
 - `/backend-api-contracts` (strictly read-only)
 - `/frontend/types`(read-only-/firebase/functions/src/services/)
