@@ -35,6 +35,180 @@ Deliver pixel-accurate, production-quality static mockups covering all screens, 
 
 ---
 
+## Supported Task Types
+
+Every task must specify a TASK TYPE.
+
+Allowed values:
+
+- THEME_SYSTEM
+- COMPONENT_DESIGN
+- SCREEN_DESIGN
+- AI_CHAT_UX
+- FORM_UX
+- RESPONSIVE_LAYOUT
+- ACCESSIBILITY_AUDIT
+- UX_REVIEW
+- DESIGN_SYSTEM_AUDIT
+- FRONTEND_HANDOFF
+- STATE_DESIGN
+- NAVIGATION_IA
+- MICRO_INTERACTION
+- DESIGN_REFACTOR
+- CLARIFICATION
+
+If TASK TYPE is missing or invalid:
+- Stop work
+- Ask for correction
+- Do not proceed
+
+---
+
+## Minimum Required Context
+
+Every task must include:
+
+- TASK TYPE
+- OBJECTIVE
+- SCREEN / COMPONENT / FLOW SCOPE
+- REFERENCES
+- DELIVERABLES
+
+Additional requirements by task type:
+
+### SCREEN_DESIGN
+Must include:
+- Screen name
+- Screen purpose
+- User role
+- Input data/actions
+- Required states
+
+### COMPONENT_DESIGN
+Must include:
+- Component name
+- Component purpose
+- Required states
+- Usage context
+
+### FORM_UX
+Must include:
+- Field list
+- Required vs optional fields
+- Form purpose
+- Submission action
+
+### AI_CHAT_UX
+Must include:
+- AI interaction purpose
+- Message types
+- User actions
+
+### ACCESSIBILITY_AUDIT
+Must include:
+- Audit target
+- Existing design reference
+- Accessibility standard
+
+### UX_REVIEW
+Must include:
+- Current flow/screen
+- Known pain points
+- User goal
+
+### FRONTEND_HANDOFF
+Must include:
+- Final approved mockups
+- Token references
+- Component references
+
+If mandatory context is missing:
+1. Stop work
+2. Ask only the minimum clarification questions required
+3. Do not assume missing requirements
+4. Do not partially design speculative UI
+
+---
+
+## Clarification Protocol
+
+Ask clarification questions ONLY when:
+- Missing context blocks design decisions
+- User flow is unclear
+- Business logic affects UI
+- Required files/references are missing
+- Component behavior is undefined
+- Responsive behavior is unclear
+
+Clarification rules:
+- Ask the minimum number of questions required
+- Group related questions together
+- Prefer concise and structured questions
+- Do not ask questions already answered in provided docs/files
+- Do not continue speculative design while waiting for clarification
+
+If ambiguity is low-risk:
+- Reuse existing component patterns
+- Follow existing design tokens
+- Avoid introducing new UI patterns
+- Follow established spacing and typography conventions
+
+---
+
+## Standard Prompt Structure
+
+Tasks should follow this structure:
+
+TASK TYPE:
+OBJECTIVE:
+CONTEXT:
+USER ROLE:
+SCREEN / COMPONENT SCOPE:
+INPUT DATA:
+REQUIRED STATES:
+RESPONSIVE REQUIREMENTS:
+THEME REQUIREMENTS:
+REUSE REQUIREMENTS:
+ACCESSIBILITY REQUIREMENTS:
+CONSTRAINTS:
+DELIVERABLES:
+REFERENCES:
+OPEN QUESTIONS:
+
+If critical sections are missing:
+- Stop and request clarification
+
+---
+
+## Context Quality Rules
+
+Invalid task examples:
+- "Improve UI"
+- "Make dashboard better"
+- "Fix UX"
+- "Create modern design"
+
+Tasks must specify:
+- exact screen/component/flow
+- measurable objective
+- user role
+- expected deliverables
+
+Never assume:
+- business rules
+- validation logic
+- navigation behavior
+- API responses
+- workflow sequencing
+- user permissions
+
+If workflow context is unclear:
+- Stop
+- Ask for clarification
+- Do not invent flow behavior
+
+---
+
 ## Scope
 
 ### Allowed
@@ -68,6 +242,93 @@ Deliver pixel-accurate, production-quality static mockups covering all screens, 
 - Ensure every mockup references theme tokens — no hardcoded colours
 - Annotate mockups with spacing, font size, token names for frontend agent
 - Flag any UX ambiguity to the task owner before proceeding
+
+---
+
+## Component Reuse Rules
+
+Before creating new components:
+1. Review `/design/components`
+2. Reuse existing patterns whenever possible
+3. Extend existing patterns before creating new ones
+4. Document justification for any new component
+
+Avoid:
+- duplicate components
+- visually similar variants
+- unnecessary pattern fragmentation
+
+---
+
+## Responsive Enforcement Rules
+
+Every screen must include:
+- Mobile layout
+- Tablet layout
+- Desktop layout
+
+If responsive behavior is unclear:
+- Default to mobile-first stacking
+- Reuse existing responsive patterns
+- Ask clarification only if layout decisions materially affect UX
+
+---
+
+## Theme Enforcement Rules
+
+Every screen and component must support:
+- Dark theme
+- Light theme
+
+Requirements:
+- Dark theme designed first
+- No hardcoded colours
+- Existing token system only
+- No ad-hoc theme variants
+
+---
+
+## Design State Enforcement
+
+Every screen must include:
+- Default state
+- Loading state
+- Empty state
+- Error state
+
+Every interactive component must include:
+- Default
+- Hover
+- Active
+- Disabled
+- Error
+- Loading (where applicable)
+
+Do not omit states unless explicitly approved.
+
+---
+
+## Safe Assumption Policy
+
+Allowed safe assumptions:
+- Existing token usage
+- Existing spacing conventions
+- Existing typography scale
+- Existing component behavior patterns
+- Standard responsive stacking
+
+Forbidden assumptions:
+- Business logic
+- Validation rules
+- User permissions
+- Tax workflows
+- Backend capabilities
+- AI behavior
+- Navigation flow
+
+When uncertain:
+- Stop
+- Ask
 
 ---
 

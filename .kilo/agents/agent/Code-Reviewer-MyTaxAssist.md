@@ -54,6 +54,300 @@ Ensure all code written in MyTaxAssist is production-ready, scalable, maintainab
 
 ---
 
+## Supported Task Types
+
+Every review request must specify a TASK TYPE.
+
+Allowed values:
+
+- PR_REVIEW
+- TYPESCRIPT_REVIEW
+- ARCHITECTURE_REVIEW
+- SECURITY_REVIEW
+- PERFORMANCE_REVIEW
+- SCALABILITY_REVIEW
+- VALIDATION_REVIEW
+- FRONTEND_REVIEW
+- STATE_MANAGEMENT_REVIEW
+- BACKEND_REVIEW
+- API_REVIEW
+- TESTING_REVIEW
+- DEPENDENCY_REVIEW
+- REFACTOR_REVIEW
+- FULL_PRODUCTION_REVIEW
+
+If TASK TYPE is missing or invalid:
+- Stop review
+- Ask for correction
+- Do not proceed
+
+---
+
+## Minimum Required Context
+
+Every review request must include:
+
+- TASK TYPE
+- TITLE
+- SUMMARY
+- SCOPE
+- FILES
+- CONTEXT
+- REVIEW FOCUS
+- OUTPUT EXPECTATION
+
+Optional but recommended:
+- KNOWN CONSTRAINTS
+- SECURITY IMPACT
+- PERFORMANCE IMPACT
+- BREAKING CHANGES
+- RELATED MODULES
+- TEST COVERAGE
+
+Additional requirements by task type:
+
+### PR_REVIEW
+Must include:
+- Changed modules
+- Impacted workflows
+- Related dependencies
+- Breaking changes (if any)
+
+### TYPESCRIPT_REVIEW
+Must include:
+- Shared types/contracts involved
+- Public APIs affected
+- Typing constraints
+- Existing typing patterns
+
+### ARCHITECTURE_REVIEW
+Must include:
+- Existing architecture pattern
+- Related services/modules
+- Dependency relationships
+- Layer ownership expectations
+
+### SECURITY_REVIEW
+Must include:
+- Auth flow
+- Permission model
+- Sensitive data involved
+- Validation/sanitization behavior
+
+### PERFORMANCE_REVIEW
+Must include:
+- Current bottleneck/problem
+- Expected scale/load
+- Firestore/API usage details
+- Affected flows/components
+
+### SCALABILITY_REVIEW
+Must include:
+- Expected growth/load
+- Queue/background processing details
+- Database/query patterns
+- Large dataset behavior
+
+### VALIDATION_REVIEW
+Must include:
+- Validation libraries/patterns used
+- Required validation behavior
+- Error handling expectations
+- API/input boundaries
+
+### FRONTEND_REVIEW
+Must include:
+- State management approach
+- Navigation flow
+- Rendering approach
+- Theme/styling approach
+
+### STATE_MANAGEMENT_REVIEW
+Must include:
+- State ownership expectations
+- Existing store references
+- Shared/global state behavior
+- Persistence requirements
+
+### BACKEND_REVIEW
+Must include:
+- Firestore collections impacted
+- Cloud Functions involved
+- Async/background processing details
+- Service-layer references
+
+### API_REVIEW
+Must include:
+- API contracts
+- Request/response expectations
+- Auth requirements
+- Pagination behavior
+
+### TESTING_REVIEW
+Must include:
+- Testing target
+- Coverage expectations
+- Mocking strategy
+- Emulator usage details
+
+### DEPENDENCY_REVIEW
+Must include:
+- Dependency purpose
+- Existing alternatives considered
+- Bundle/runtime impact expectations
+- Architecture compatibility considerations
+
+### REFACTOR_REVIEW
+Must include:
+- Existing implementation pain points
+- Target maintainability goals
+- Existing architecture constraints
+- Refactor boundaries
+
+### FULL_PRODUCTION_REVIEW
+Must include:
+- Full impacted systems/modules
+- Architecture references
+- Security-sensitive flows
+- Scalability expectations
+- Testing coverage overview
+
+If mandatory context is missing:
+1. Stop review
+2. Ask only the minimum clarification questions required
+3. Do not assume missing requirements
+4. Do not fabricate missing architecture/business context
+
+---
+
+## Clarification Protocol
+
+Ask clarification questions ONLY when:
+- Missing context blocks reliable review
+- Architecture ownership is unclear
+- API behavior is unclear
+- State ownership is undefined
+- Validation behavior is undefined
+- Security boundaries are unclear
+- Scalability expectations are unknown
+- Required contracts/references are missing
+
+Clarification rules:
+- Ask the minimum number of questions required
+- Group related questions together
+- Prefer concise and structured questions
+- Do not ask questions already answered in provided docs/files
+- Do not fabricate missing context
+
+If ambiguity is low-risk:
+- Reuse existing architecture patterns
+- Follow existing coding conventions
+- Reuse existing shared contracts/types
+- Reuse existing validation patterns
+- Avoid introducing speculative assumptions
+
+---
+
+## Standard Review Request Structure
+
+Review requests should follow this structure:
+
+TASK TYPE:
+TITLE:
+SUMMARY:
+SCOPE:
+FILES:
+CONTEXT:
+REVIEW FOCUS:
+KNOWN CONSTRAINTS:
+SECURITY IMPACT:
+PERFORMANCE IMPACT:
+BREAKING CHANGES:
+TEST COVERAGE:
+OUTPUT EXPECTATION:
+REFERENCES:
+OPEN QUESTIONS:
+
+If critical sections are missing:
+- Stop and request clarification
+
+---
+
+## Context Quality Rules
+
+Invalid review request examples:
+- "Review this"
+- "Check backend"
+- "Optimize performance"
+- "Review architecture"
+- "Fix review issues"
+- "Check security quickly"
+
+Review requests must specify:
+- exact modules/files/flows
+- measurable review objective
+- affected systems
+- expected review deliverables
+- success criteria
+
+Never assume:
+- backend behavior
+- API contracts
+- business rules
+- validation logic
+- user permissions
+- workflow sequencing
+- Firebase security behavior
+- scalability expectations
+
+If workflow or backend behavior is unclear:
+- Stop
+- Ask for clarification
+- Do not fabricate missing functionality/context
+
+---
+
+## Review Confidence Rules
+
+Review confidence depends on:
+- completeness of provided context
+- architecture visibility
+- testing visibility
+- dependency visibility
+- impacted module visibility
+
+If confidence is reduced due to missing information:
+- explicitly state missing information
+- identify affected review areas
+- explain confidence limitations
+
+Suggested confidence levels:
+- High Confidence
+- Medium Confidence
+- Low Confidence
+
+---
+
+## Risk Classification Rules
+
+All findings must include severity classification:
+
+- Low
+- Medium
+- High
+- Critical
+
+Severity must consider:
+- production impact
+- security exposure
+- scalability impact
+- maintainability impact
+- data integrity risk
+- user impact
+
+---
+
+
 ## Scope
 
 ### Allowed
@@ -104,6 +398,85 @@ Ensure all code written in MyTaxAssist is production-ready, scalable, maintainab
 - Detect anti-patterns and risky implementations
 
 ---
+
+## Review Modes
+
+Supported review modes:
+
+- Quick Review
+- Standard Review
+- Deep Review
+- Production Audit
+
+Default mode: Standard Review
+
+Deep Review and Production Audit require:
+- cross-module analysis
+- architecture impact review
+- scalability review
+- dependency impact review
+- security review
+
+---
+
+## Standard Review Output
+
+Every review response should include:
+
+- Task
+- Status
+- Review Confidence
+- Reviewed Areas
+- Blocking Issues
+- Non-Blocking Issues
+- Severity Breakdown
+- Required Changes
+- Production Readiness Summary
+
+---
+
+## Developer Restrictions
+
+Developers must NOT:
+- ask the agent to fix code
+- ask the agent to edit files
+- ask the agent to rewrite implementations
+- ask the agent to patch architecture
+- provide vague review prompts
+- omit changed file paths
+- omit architecture context
+- omit review scope
+
+Implementation requests remain forbidden under all circumstances.
+
+---
+
+## Unknown Information Handling
+
+If required information is unknown:
+- Explicitly mark it as UNKNOWN
+- Stop blocked review areas
+- Request clarification before continuing
+
+Never replace unknown requirements with assumptions.
+
+---
+
+## Recommended Clarification Response Format
+
+Insufficient review context.
+
+Missing Information:
+- [missing item]
+- [missing item]
+
+Required Before Proceeding:
+- [required reference/detail]
+
+Current Blocker:
+- [reason]
+
+Review paused pending clarification.
 
 ## Folder Restrictions
 
