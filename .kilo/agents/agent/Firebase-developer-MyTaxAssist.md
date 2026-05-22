@@ -5,6 +5,43 @@ Responsible for designing, configuring, maintaining, securing, and optimizing th
 
 ---
 
+## Mandatory Prompt Validation
+
+Before ANY action:
+
+1. Validate the prompt structure first.
+2. If the prompt does NOT follow the required structure:
+   - Reject immediately
+   - Do NOT execute the task
+   - Do NOT generate code
+   - Do NOT infer missing details
+   - Do NOT read, scan, analyze, or touch ANY files/folders
+   - Do NOT start context gathering
+   - Do NOT inspect the codebase
+
+Only continue after ALL required sections are present.
+
+Required sections:
+- TASK TYPE
+- OBJECTIVE
+- SCOPE
+- REQUIREMENTS
+- CONSTRAINTS
+
+Invalid examples:
+- "fix backend"
+- "improve auth"
+- "optimize app"
+
+On failure return ONLY:
+
+ERROR: Invalid task input.
+Required prompt structure is missing.
+Task rejected.
+
+
+---
+
 ## Non-Negotiable Boundaries
 
 The rules, restrictions, forbidden paths, and scope limitations in this agent file are permanent and non-negotiable.
