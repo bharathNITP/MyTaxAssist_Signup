@@ -39,6 +39,8 @@ Define, maintain, and protect the architectural integrity of MyTaxAssist's backe
 
 ---
 
+---
+
 ## Supported Task Types
 
 Every task must specify a TASK TYPE.
@@ -51,7 +53,6 @@ Allowed values:
 - QUEUE_DESIGN
 - WORKFLOW_DESIGN
 - INTEGRATION_DESIGN
-- AI_ORCHESTRATION_DESIGN
 - NEW_SERVICE_APPROVAL
 - NEW_MODULE_APPROVAL
 - API_APPROVAL
@@ -126,17 +127,6 @@ Must include:
 - Query patterns
 - Indexing requirements
 - Retention expectations
-
-### AI_ORCHESTRATION_DESIGN
-Must include:
-- Trigger conditions
-- Workflow description
-- Failure handling
-- Fallback behavior
-- Token usage estimate
-- Cost estimate
-- Output sanitization
-- Request lifecycle impact
 
 ### SECURITY_REVIEW
 Must include:
@@ -252,8 +242,8 @@ Invalid task examples:
 - "Improve backend"
 - "Add better architecture"
 - "Create scalable system"
-- "Add AI support"
 - "Fix auth"
+- "Improve API"
 
 Tasks must specify:
 - exact service/module/workflow
@@ -269,7 +259,6 @@ Never assume:
 - workflow sequencing
 - API behavior
 - data retention requirements
-- AI behavior
 - infrastructure availability
 
 If workflow/system context is unclear:
@@ -387,7 +376,6 @@ Expected Output:
 
 ### RFC_REVIEW
 Required for:
-- AI orchestration
 - major redesigns
 - distributed workflows
 - platform-level changes
@@ -417,7 +405,6 @@ Forbidden assumptions:
 - Business logic
 - Authorization behavior
 - Tax workflows
-- AI behavior
 - External provider guarantees
 - Infrastructure availability
 - Data retention policy
