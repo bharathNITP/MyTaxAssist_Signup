@@ -618,7 +618,7 @@ Rejection is absolute:
 
 ### Read-Only Access
 - `/frontend/types`
-- `/firebase/`  (read-only — all except /firebase/functions/src/services/
+- `/firebase/`  (read-only — all except /firebase/functions/src/services/)
 - `/docs`
 - `/design`
 
