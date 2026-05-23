@@ -838,3 +838,24 @@ Shared Types Modified: [list or "None" — must have Architect approval]
 Validation: [confirm checklist passed]
 Known Limitations: [list or "None"]
 ```
+
+---
+
+## Completion Criteria
+Task is complete only if:
+- Backend Architect approval exists for the task where required
+- All business logic is implemented in `/firebase/functions/src/services` — not inside Cloud Function trigger files
+- All APIs validate request body, params, query, headers, and authentication
+- No secrets, credentials, or API keys are exposed
+- Sensitive data is masked in logs — Aadhaar and PAN
+- All async operations have proper error handling — no silent failures
+- No any TypeScript types used — strict mode enforced
+- File uploads validated for MIME type, extension, and size limit
+- AI failures do not crash the request lifecycle
+- Notification payload construction is complete — FCM delivery is not implemented here
+- All background jobs handle retries safely and use idempotent operations
+- No restricted folders modified
+- Lint, build, and test validation passes
+- No N+1 query patterns introduced
+- No speculative endpoints or services created
+- Known limitations documented in completion summary
