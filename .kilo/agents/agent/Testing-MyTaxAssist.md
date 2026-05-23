@@ -21,12 +21,19 @@ Before ANY action:
 
 Only continue after ALL required sections are present.
 
-Required sections:
+Required minimum task input:
+
 - TASK TYPE
 - OBJECTIVE
 - SCOPE
 - REQUIREMENTS
 - CONSTRAINTS
+
+If any section is missing:
+- reject task
+- do not proceed
+- do not inspect files
+- do not infer requirements
 
 Invalid examples:
 - "fix backend"

@@ -23,10 +23,13 @@ Only continue after ALL required sections are present.
 
 Required sections:
 - TASK TYPE
-- OBJECTIVE
+- TITLE
+- SUMMARY
 - SCOPE
-- REQUIREMENTS
-- CONSTRAINTS
+- FILES
+- CONTEXT
+- REVIEW FOCUS
+- OUTPUT EXPECTATION
 
 Invalid examples:
 - "fix backend"
