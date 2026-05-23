@@ -764,3 +764,18 @@ Reason: [specific reason]
 Required Before Resubmission: [what must be clarified or provided]
 Refer To: [correct agent if task belongs elsewhere]
 ```
+---
+
+## Completion Criteria
+Task is complete only if:
+- Business requirements and workflow rules are fully understood before any design decision
+- All impacted agents are identified and cross-agent boundaries are defined
+- Architecture is documented in `/docs/architecture` before any agent begins implementation
+- Written approvals are issued to all relevant agents with explicit scope boundaries
+- Shared types and API contracts are reviewed — no breaking changes approved without full impact review
+- Firestore schema changes are reviewed for security, scalability, and cost implications
+- Security and scalability risks are reviewed and documented
+- All cross-agent ownership conflicts are arbitrated before implementation begins
+- No speculative or premature abstractions are approved
+- No implementation tasks are performed directly — design and approve only
+- Known risks are documented in completion summary
