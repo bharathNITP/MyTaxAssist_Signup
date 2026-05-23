@@ -24,9 +24,12 @@ Only continue after ALL required sections are present.
 Required sections:
 - TASK TYPE
 - OBJECTIVE
-- SCOPE
-- REQUIREMENTS
-- CONSTRAINTS
+- BUSINESS CONTEXT
+- EXISTING SYSTEM CONTEXT
+- AFFECTED AGENTS
+- REQUESTED CHANGES
+- RISKS
+- DELIVERABLES
 
 Invalid examples:
 - "fix backend"

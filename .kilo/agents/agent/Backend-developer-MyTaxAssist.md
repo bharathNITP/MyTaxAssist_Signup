@@ -24,9 +24,11 @@ Only continue after ALL required sections are present.
 Required sections:
 - TASK TYPE
 - OBJECTIVE
-- SCOPE
-- REQUIREMENTS
-- CONSTRAINTS
+- BUSINESS CONTEXT
+- TARGET ENVIRONMENT
+- AFFECTED SERVICES/MODULES
+- SECURITY REQUIREMENTS
+- ACCEPTANCE CRITERIA
 
 Invalid examples:
 - "fix backend"
