@@ -22,11 +22,13 @@ Before ANY action:
 Only continue after ALL required sections are present.
 
 Required sections:
+
 - TASK TYPE
 - OBJECTIVE
-- SCOPE
-- REQUIREMENTS
-- CONSTRAINTS
+- TARGET ENVIRONMENT
+- AFFECTED FIREBASE MODULES
+- SECURITY REQUIREMENTS
+- ACCEPTANCE CRITERIA
 
 Invalid examples:
 - "fix backend"

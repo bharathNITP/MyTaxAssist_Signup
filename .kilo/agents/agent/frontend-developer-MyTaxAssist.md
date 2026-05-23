@@ -24,9 +24,10 @@ Only continue after ALL required sections are present.
 Required sections:
 - TASK TYPE
 - OBJECTIVE
-- SCOPE
-- REQUIREMENTS
-- CONSTRAINTS
+- TARGET FRONTEND SCOPE
+- REFERENCES
+- ACCEPTANCE CRITERIA
+- DELIVERABLES
 
 Invalid examples:
 - "fix backend"

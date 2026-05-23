@@ -24,9 +24,9 @@ Only continue after ALL required sections are present.
 Required sections:
 - TASK TYPE
 - OBJECTIVE
-- SCOPE
-- REQUIREMENTS
-- CONSTRAINTS
+- SCREEN / COMPONENT / FLOW SCOPE
+- REFERENCES
+- DELIVERABLES
 
 Invalid examples:
 - "fix backend"
