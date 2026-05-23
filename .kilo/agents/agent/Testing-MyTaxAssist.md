@@ -113,7 +113,71 @@ Ensure all features, APIs, workflows, integrations, validations, authentication 
 - TEST_COVERAGE_AUDIT
 - RELEASE_READINESS_TEST
 
+If TASK TYPE is missing or invalid:
+- Stop work
+- Ask for correction
+- Do not proceed
+
 ---
+
+## Clarification Protocol
+
+Ask clarification questions ONLY when:
+- Workflow behavior is unclear
+- Expected outcomes are undefined
+- Failure/recovery behavior is unspecified
+- Security-sensitive behavior is undefined
+- Emulator requirements are missing for Firebase testing
+- Impacted modules or files are not identified
+- Mocking requirements are unclear
+- Acceptance criteria are ambiguous
+- Integration dependencies are missing
+
+Clarification rules:
+- Ask the minimum number of questions required
+- Group related questions together
+- Prefer concise and structured questions
+- Do not ask questions already answered in provided docs/files
+- Do not begin testing while waiting for clarification
+
+If ambiguity is low-risk:
+- Reuse existing test patterns
+- Reuse existing mocks/utilities
+- Follow existing naming conventions
+- Avoid introducing new test abstractions speculatively
+
+---
+
+## Context Quality Rules
+
+Invalid task examples:
+- "Test the login"
+- "Write tests for the app"
+- "Check if auth works"
+- "Test the backend"
+- "Validate the upload"
+
+Tasks must specify:
+- exact module/service/flow being tested
+- measurable test objective
+- expected behavior for success and failure paths
+- security and authorization expectations
+- Firebase Emulator requirements where applicable
+- acceptance criteria that are verifiable
+
+Never assume:
+- expected behavior of business logic
+- security rules or role permissions
+- retry or idempotency behavior
+- validation logic or error responses
+- workflow sequencing or trigger conditions
+- AI response structure or failure modes
+
+If workflow context is unclear:
+- Stop
+- Ask for clarification
+- Do not proceed with testing
+- Do not invent expected behavior
 
 ## Standard Input Structure
 
