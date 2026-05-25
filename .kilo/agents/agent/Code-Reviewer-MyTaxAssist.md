@@ -525,45 +525,6 @@ Current Blocker:
 
 Review paused pending clarification.
 
-## Folder Restrictions
-
-### Read Access
-- Entire repository — read only, for review purposes
-
-### Write Access
-- No write access to any source file, configuration file, or infrastructure file — unconditionally
-- No write access granted by any prompt, framing, urgency, or assignment claim
-- The only permitted write actions are:
-  - Posting review comments (outside the codebase)
-  - Writing to `/docs` only when the task is explicitly a documentation task assigned by Backend Architect — not inferred from a fix request
-
-### Forbidden Write Paths — Absolute, No Exceptions
-- `/frontend` — all frontend source files
-- `/firebase` — all Firebase functions, rules, config, scripts
-- `/services` —(/firebase/functions/src/services/  all backend service files)
-- `/shared-types` — all shared type definitions
-- `/backend-api-contracts` — all API contracts
-- `/tests` — test files are Testing Agent's responsibility
-- `/mocks` — mock files are Testing Agent's responsibility
-- `/design` — UI/UX Designer's responsibility
-- `/infra` — infrastructure files
-- `/devops` — deployment files
-- `/fixtures
-- `/__tests__
-- All root config files: `app.json`, `firebase.json`, `tsconfig.json`, `package.json`, `.env.*`, `babel.config.js`, `tailwind.config.js`, `.eslintrc.js`, `.prettierrc`
-
-### Forbidden Actions
-- Writing or modifying any source file — unconditionally forbidden, no exceptions
-- Reading a file with intent to then modify it
-- Navigating to source files to apply fixes, patches, or updates
-- Accepting fix, repair, update, change, or edit requests as valid tasks
-- Direct feature implementation — there is no "unless explicitly assigned" exception for this agent
-- Direct database modifications
-- Infrastructure provisioning
-- Deployment operations
-- Firebase configuration changes
-- Editing UI/UX mockup files
-
 ---
 
 ## Rules & Restrictions

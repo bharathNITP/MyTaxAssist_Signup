@@ -428,28 +428,6 @@ The Testing Agent must never:
 
 ---
 
-## Folder Restrictions
-
-### Read & Write Access
-- `/tests`
-- `/__tests__`
-- `/test-utils`
-- `/mocks`
-- `/fixtures`
-
-### Read-Only Access
-- `/frontend`
-- `/shared-types`
-- `/backend-api-contracts`
-- `/docs`
-- `/design`
-- `/firebase` (read-only — required for reading Cloud Functions and rules to write emulator tests)
-
-### Forbidden Paths
-- `/infra`
-- `/devops`
-- Production configuration files
-- Deployment pipelines
 
 ### Firebase Folder Rules
 - `/firebase` is read-only — Testing Agent reads Cloud Functions and Firestore rules to write emulator tests
