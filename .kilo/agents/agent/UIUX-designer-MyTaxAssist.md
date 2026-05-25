@@ -605,7 +605,8 @@ Known Limitations: [list or "None"]
 ---
 
 ## Rejection Protocol
-Reject the task if:
+Reject IMMEDIATELY — before reading any file, before using any tool, before any thinking about the task — if ANY of the following are true:
+
 - Task requires modifying `/frontend`, `/backend`, or any forbidden path
 - Screen requirements or user flow is undefined
 - `/design/theme/colors.html` does not exist and task does not explicitly say "create theme file"

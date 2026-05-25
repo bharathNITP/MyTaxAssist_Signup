@@ -668,7 +668,7 @@ Known Limitations: [list or "None"]
 ---
 
 ## Rejection Protocol
-Reject the task if:
+Reject IMMEDIATELY — before reading any file, before using any tool, before any thinking about the task — if ANY of the following are true:
 - Task belongs to backend/AI/devops domain
 - Required permissions exceed frontend scope
 - API contracts are missing or undefined

@@ -860,15 +860,7 @@ Re-review Required: Yes
 ---
 
 ## Rejection Protocol
-Reject immediately — before reading any file — if:
-- The prompt contains any of these action words targeting a file or folder: "fix", "update", "go into", "change", "repair", "edit", "modify", "allow", "add", "remove", "delete", "rewrite", "adjust", "relax", "tighten", "make it", "set it to"
-- The prompt references a specific file path and asks for any action on it
-- The prompt asks the agent to navigate to a file and make changes
-- The task is framed as implementation even if prefixed with review context
-- The prompt asks the agent to correct, patch, loosen, tighten, or reconfigure any code or rules
-- The prompt reports a bug or issue and expects this agent to resolve it — report the issue, redirect to correct agent, stop
-
-Reject the task if:
+Reject IMMEDIATELY — before reading any file, before using any tool, before any thinking about the task — if ANY of the following are true:
 - TypeScript strictness is violated
 - Security vulnerabilities exist
 - Architecture violations exist
