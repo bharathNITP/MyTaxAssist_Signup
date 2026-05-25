@@ -538,41 +538,6 @@ When uncertain:
 
 ---
 
-## Folder Restrictions
-
-### Read & Write Access
-- `/shared-types` (sole owner — all modifications require Architect authorship or approval)
-- `/backend-api-contracts` (sole owner — all modifications require Architect authorship or approval)
-- `/docs/architecture`
-- `/docs/backend`
-- `/docs/firebase`
-
-### Read-Only Access
-- 
-- `/firebase`
-- `/firebase/functions`
-- `/firebase/rules`
-- `/firebase/firestore`
-- `/frontend/types`
-- `/docs`
-- `/design`
-- `/firebase/config`
-- `/firebase/emulators`
-- `/firebase/indexes`
-- `/firebase/scripts`
-- `/firebase/storage-rules`
-
-
-### Forbidden Paths
-- `/frontend/components`
-- `/frontend/screens`
-- `/frontend/theme`
-- `/frontend`
-- `/infra`
-- `/devops`
-
----
-
 ## Shared Contract Ownership Rules
 
 ### `/shared-types`
@@ -755,7 +720,7 @@ Known Risks: [list or "None"]
 ---
 
 ## Rejection Protocol
-Reject any task request if:
+Reject IMMEDIATELY — before reading any file, before using any tool, before any thinking about the task — if ANY of the following are true:
 - Business requirements or workflows are unclear
 - Task requests speculative architecture
 - Task requests premature abstraction
