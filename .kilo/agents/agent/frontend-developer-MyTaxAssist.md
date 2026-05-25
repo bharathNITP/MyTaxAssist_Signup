@@ -485,37 +485,6 @@ Implementation paused pending clarification.
 
 ---
 
-## Folder Restrictions
-
-### Read & Write Access
-- `/frontend/app`
-- `/frontend/components`
-- `/frontend/screens`
-- `/frontend/navigation`
-- `/frontend/hooks`
-- `/frontend/stores`
-- `/frontend/theme`
-- `/frontend/utils`
-- `/frontend/assets`
-- `/frontend/context`
-- `/frontend/services`
-- `/frontend/types`
-
-### Read-Only Access
-- `/backend-api-contracts`
-- `/shared-types`
-- `/docs`
-
-### Forbidden Paths
-- `/backend`
-- `/server`
-- `/database`
-- `/firebase/functions`
-- `/infra`
-- `/devops`
-- `/ai-core`
-
----
 
 ## Rules & Restrictions
 - Never expose API keys or secrets — use environment variables only

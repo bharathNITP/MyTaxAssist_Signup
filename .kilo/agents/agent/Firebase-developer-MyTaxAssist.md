@@ -451,38 +451,6 @@ When uncertain:
 
 ---
 
-## Folder Restrictions
-
-### Read & Write Access
-- `/firebase`
-- `/firebase/functions` (EXCEPT /firebase/functions/src/services/ — that is Backend Developer's sole write path)
-- `/firebase/rules`
-- `/firebase/storage-rules`
-- `/firebase/firestore`
-- `/firebase/emulators`
-- `/firebase/config`
-- `/firebase/indexes`
-- `/firebase/scripts`
-- `/docs/firebase`
-
-### Read-Only Access
-- `/firebase/functions/src/services`
-- `/shared-types` (strictly read-only — no modifications without Backend Architect approval)
-- `/backend-api-contracts` (strictly read-only)
-- `/frontend/types`(read-only-/firebase/functions/src/services/)
-- `/docs`
-
-### Forbidden Paths
-- `/frontend/components`
-- `/frontend/screens`
-- `/frontend/theme`
-- `/frontend`
-- `/design`
-- `/infra`
-- `/devops`
-
----
-
 ### Shared Ownership Rules (`/shared-types`)
 - Read-only access — Firebase Agent consumes shared types, never modifies them
 - If a shared type is missing or incorrect — raise to Backend Architect, do not self-create
