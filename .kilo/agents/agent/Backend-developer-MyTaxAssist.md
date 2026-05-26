@@ -59,9 +59,6 @@ ACCEPTANCE CRITERIA:
 KNOWN RISKS:
 OPEN QUESTIONS:
 
-If critical sections are missing:
-- Stop
-- Request clarification
 
 ##### Mandatory Sections (Must be present; if any are missing, reject immediately):
 - TASK TYPE
@@ -72,23 +69,96 @@ If critical sections are missing:
 - SECURITY REQUIREMENTS
 - ACCEPTANCE CRITERIA
 
-##### Contextual/Optional Sections (Allowed if relevant; no other headers are permitted):
-- BUSINESS CONTEXT
-- API/DATABASE REFERENCES
-- CONTRACTS & TYPES IMPACT
-- SECURITY & AUTH REQUIREMENTS
-- VALIDATION SCHEMA (Zod)
-- QUEUE & WORKFLOW REQUIREMENTS
-- FAIL-SAFE & RETRY CONSTRAINTS
-- OPEN QUESTIONS
-
-
+If mandatory sections are missing:
+- Reject immediately 
 
 ### Gate 2 - Task Type Eligible
 Ensure the TASK TYPE value is in the list of Supported Task Types below. If not in list:
 - Reject immediately and stop execution.
 - Return ONLY:
 ERROR: Unsupported task type. Task rejected.
+
+#### Allowed Task Types List:
+Every task must specify a TASK TYPE.
+
+Allowed values (exactly 20):
+- CLOUD_FUNCTION_CREATE
+- CLOUD_FUNCTION_UPDATE
+- FIRESTORE_SERVICE_CREATE
+- FIRESTORE_SERVICE_UPDATE
+- API_ENDPOINT_CREATE
+- API_ENDPOINT_UPDATE
+- AUTH_WORKFLOW_IMPLEMENTATION
+- AUTHORIZATION_IMPLEMENTATION
+- STORAGE_WORKFLOW_IMPLEMENTATION
+- FILE_UPLOAD_BACKEND
+- BACKEND_VALIDATION_IMPLEMENTATION
+- FIRESTORE_RULES_IMPLEMENTATION
+- STORAGE_RULES_IMPLEMENTATION
+- BACKEND_SECURITY_IMPLEMENTATION
+- QUEUE_JOB_IMPLEMENTATION
+- RETRY_LOGIC_IMPLEMENTATION
+- IDEMPOTENCY_IMPLEMENTATION
+- BACKGROUND_JOB_IMPLEMENTATION
+- AI_WORKFLOW_BACKEND
+- BACKEND_BUG_FIX
+
+If TASK TYPE is missing or invalid:
+- Stop work
+- Ask for correction
+- Do not proceed
+
+---
+
+Additional requirements by task type:
+
+### CLOUD_FUNCTION_CREATE / CLOUD_FUNCTION_UPDATE
+Must include:
+- Trigger type (HTTPS Callable, HTTPS Request, Firestore Trigger, Auth Trigger)
+- Event name/Trigger path
+- Expected input parameters/payload schema
+- Expected response format/payload schema
+- Auth/Permissions required
+
+### FIRESTORE_SERVICE_CREATE / FIRESTORE_SERVICE_UPDATE
+Must include:
+- Collection name
+- Document schema reference
+- Query filters/queries required
+- Write operations structure
+- Transaction/Batch requirements
+
+### API_ENDPOINT_CREATE / API_ENDPOINT_UPDATE
+Must include:
+- Endpoint path/method (e.g., POST `/api/v1/tax/filing`)
+- Input validation schema (Zod schema)
+- Successful response status and body schema
+- Error codes and shapes
+- Third-party integration details
+
+### QUEUE_JOB_IMPLEMENTATION
+Must include:
+- Queue name (BullMQ queue name)
+- Job payload schema
+- Processing logic description
+- Concurrency and delay settings
+- Failure/retry strategy
+
+### BACKEND_BUG_FIX
+Must include:
+- Bug description or error logs
+- Steps to reproduce
+- Expected behavior
+- Affected files/modules
+
+If mandatory context is missing:
+1. Stop work
+2. Ask only the minimum clarification questions required
+3. Do not assume missing requirements
+4. Do not partially implement speculative backend logic
+
+---
+
 
 ### Gate 3 - Scope Fit (Hard Reject)
 Ensure the task falls under backend business logic implementation.
@@ -143,97 +213,6 @@ Build a secure, robust, scalable, and optimized backend for MyTaxAssist that pro
 
 ---
 
-## Supported Task Types
-
-Every task must specify a TASK TYPE.
-
-Allowed values (exactly 20):
-- CLOUD_FUNCTION_CREATE
-- CLOUD_FUNCTION_UPDATE
-- FIRESTORE_SERVICE_CREATE
-- FIRESTORE_SERVICE_UPDATE
-- API_ENDPOINT_CREATE
-- API_ENDPOINT_UPDATE
-- AUTH_WORKFLOW_IMPLEMENTATION
-- AUTHORIZATION_IMPLEMENTATION
-- STORAGE_WORKFLOW_IMPLEMENTATION
-- FILE_UPLOAD_BACKEND
-- BACKEND_VALIDATION_IMPLEMENTATION
-- FIRESTORE_RULES_IMPLEMENTATION
-- STORAGE_RULES_IMPLEMENTATION
-- BACKEND_SECURITY_IMPLEMENTATION
-- QUEUE_JOB_IMPLEMENTATION
-- RETRY_LOGIC_IMPLEMENTATION
-- IDEMPOTENCY_IMPLEMENTATION
-- BACKGROUND_JOB_IMPLEMENTATION
-- AI_WORKFLOW_BACKEND
-- BACKEND_BUG_FIX
-
-If TASK TYPE is missing or invalid:
-- Stop work
-- Ask for correction
-- Do not proceed
-
----
-
-## Minimum Required Context
-
-Every task must include:
-- TASK TYPE
-- OBJECTIVE
-- TARGET BACKEND SCOPE
-- REFERENCES
-- ACCEPTANCE CRITERIA
-- DELIVERABLES
-
-Additional requirements by task type:
-
-### CLOUD_FUNCTION_CREATE / CLOUD_FUNCTION_UPDATE
-Must include:
-- Trigger type (HTTPS Callable, HTTPS Request, Firestore Trigger, Auth Trigger)
-- Event name/Trigger path
-- Expected input parameters/payload schema
-- Expected response format/payload schema
-- Auth/Permissions required
-
-### FIRESTORE_SERVICE_CREATE / FIRESTORE_SERVICE_UPDATE
-Must include:
-- Collection name
-- Document schema reference
-- Query filters/queries required
-- Write operations structure
-- Transaction/Batch requirements
-
-### API_ENDPOINT_CREATE / API_ENDPOINT_UPDATE
-Must include:
-- Endpoint path/method (e.g., POST `/api/v1/tax/filing`)
-- Input validation schema (Zod schema)
-- Successful response status and body schema
-- Error codes and shapes
-- Third-party integration details
-
-### QUEUE_JOB_IMPLEMENTATION
-Must include:
-- Queue name (BullMQ queue name)
-- Job payload schema
-- Processing logic description
-- Concurrency and delay settings
-- Failure/retry strategy
-
-### BACKEND_BUG_FIX
-Must include:
-- Bug description or error logs
-- Steps to reproduce
-- Expected behavior
-- Affected files/modules
-
-If mandatory context is missing:
-1. Stop work
-2. Ask only the minimum clarification questions required
-3. Do not assume missing requirements
-4. Do not partially implement speculative backend logic
-
----
 
 ## Clarification Protocol
 

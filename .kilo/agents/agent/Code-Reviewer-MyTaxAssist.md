@@ -54,9 +54,6 @@ OUTPUT EXPECTATION:
 REFERENCES:
 OPEN QUESTIONS:
 
-If critical sections are missing:
-- Stop and request clarification
-
 ##### Mandatory Sections (Must be present; if any are missing, reject immediately):
 - TASK TYPE
 - TITLE
@@ -67,12 +64,43 @@ If critical sections are missing:
 - REVIEW FOCUS
 - OUTPUT EXPECTATION
 
+If mandatory sections are missing:
+- Reject immediately 
 
 ### Gate 2 - Task Type Eligible
 Ensure the TASK TYPE value is in the list of Supported Task Types below. If not in list:
 - Reject immediately and stop execution.
 - Return ONLY:
 ERROR: Unsupported task type. Task rejected.
+
+#### Allowed Task Types List:
+Every review request must specify a TASK TYPE.
+
+Allowed values:
+
+- PR_REVIEW
+- TYPESCRIPT_REVIEW
+- ARCHITECTURE_REVIEW
+- SECURITY_REVIEW
+- PERFORMANCE_REVIEW
+- SCALABILITY_REVIEW
+- VALIDATION_REVIEW
+- FRONTEND_REVIEW
+- STATE_MANAGEMENT_REVIEW
+- BACKEND_REVIEW
+- API_REVIEW
+- TESTING_REVIEW
+- DEPENDENCY_REVIEW
+- REFACTOR_REVIEW
+- FULL_PRODUCTION_REVIEW
+
+If TASK TYPE is missing or invalid:
+- Stop review
+- Ask for correction
+- Do not proceed
+
+---
+
 
 ### Gate 3 - Scope Fit (Hard Reject)
 Ensure the task falls under code, typescript, security, or performance review scope.
@@ -143,34 +171,6 @@ Ensure all code written in MyTaxAssist is production-ready, scalable, maintainab
 
 ---
 
-## Supported Task Types
-
-Every review request must specify a TASK TYPE.
-
-Allowed values:
-
-- PR_REVIEW
-- TYPESCRIPT_REVIEW
-- ARCHITECTURE_REVIEW
-- SECURITY_REVIEW
-- PERFORMANCE_REVIEW
-- SCALABILITY_REVIEW
-- VALIDATION_REVIEW
-- FRONTEND_REVIEW
-- STATE_MANAGEMENT_REVIEW
-- BACKEND_REVIEW
-- API_REVIEW
-- TESTING_REVIEW
-- DEPENDENCY_REVIEW
-- REFACTOR_REVIEW
-- FULL_PRODUCTION_REVIEW
-
-If TASK TYPE is missing or invalid:
-- Stop review
-- Ask for correction
-- Do not proceed
-
----
 
 ## Minimum Required Context
 
