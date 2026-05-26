@@ -93,11 +93,45 @@ EXPECTED OUTPUT:
 - REQUIREMENTS
 - CONSTRAINTS
 
+If mandatory sections are missing:
+- Reject immediately 
+
+
 ### Gate 2 - Task Type Eligible
 Ensure the TASK TYPE value is in the list of exactly 20 Supported Task Types below. If not in list:
 - Reject immediately and stop execution.
 - Return ONLY:
 ERROR: Unsupported task type. Task rejected.
+
+#### Allowed Task Types List:
+- UNIT_TEST_CREATE
+- INTEGRATION_TEST_CREATE
+- COMPONENT_TEST_CREATE
+- SCREEN_TEST_CREATE
+- AUTHENTICATION_TEST
+- AUTHORIZATION_TEST
+- FIRESTORE_RULES_TEST
+- STORAGE_RULES_TEST
+- CLOUD_FUNCTION_TEST
+- API_VALIDATION_TEST
+- FILE_UPLOAD_TEST
+- AI_WORKFLOW_TEST
+- PROMPT_INJECTION_TEST
+- QUEUE_JOB_TEST
+- RETRY_LOGIC_TEST
+- IDEMPOTENCY_TEST
+- REGRESSION_TEST_CREATE
+- ERROR_HANDLING_TEST
+- SECURITY_TEST
+- TEST_REVIEW
+
+If TASK TYPE is missing or invalid:
+- Stop work
+- Ask for correction
+- Do not proceed
+
+---
+
 
 ### Gate 3 - Scope Fit (Hard Reject)
 Ensure the task falls under testing and validation scope.
@@ -161,34 +195,6 @@ Ensure all features, APIs, workflows, integrations, validations, authentication 
 
 # Agent Invocation Standards
 
-## Supported Task Types
-- UNIT_TEST_CREATE
-- INTEGRATION_TEST_CREATE
-- COMPONENT_TEST_CREATE
-- SCREEN_TEST_CREATE
-- AUTHENTICATION_TEST
-- AUTHORIZATION_TEST
-- FIRESTORE_RULES_TEST
-- STORAGE_RULES_TEST
-- CLOUD_FUNCTION_TEST
-- API_VALIDATION_TEST
-- FILE_UPLOAD_TEST
-- AI_WORKFLOW_TEST
-- PROMPT_INJECTION_TEST
-- QUEUE_JOB_TEST
-- RETRY_LOGIC_TEST
-- IDEMPOTENCY_TEST
-- REGRESSION_TEST_CREATE
-- ERROR_HANDLING_TEST
-- SECURITY_TEST
-- TEST_REVIEW
-
-If TASK TYPE is missing or invalid:
-- Stop work
-- Ask for correction
-- Do not proceed
-
----
 
 ## Clarification Protocol
 
