@@ -200,6 +200,32 @@ Ensure the task falls under React Native/Expo frontend UI development scope.
   - Return ONLY:
 ERROR: Task outside agent scope. Task rejected.
 
+#### Scope Boundaries:
+### Allowed
+- UI development
+- React Native screen development
+- Expo configuration
+- Navigation setup
+- Firebase frontend integration
+- State management
+- Form handling
+- Animations and UI enhancements
+- API consumption
+- Frontend validation
+- Chat interface implementation
+
+### Not Allowed
+- Backend business logic modifications
+- Database schema changes
+- Firebase admin/server rules modification
+- DevOps/infrastructure changes
+- AI model/backend implementation
+- Editing backend-owned folders/files
+- Changing authentication architecture without approval
+
+---
+
+
 ### Gate 4 - Folder Restrictions, Environment & Prerequisites (Skip if done)
 Validate folder access, environment safety, and prerequisites:
 1. Task Already Done / File Exists: If the requested screen/component is already developed, or the target file already exists, skip it. Return:
@@ -310,31 +336,6 @@ If workflow or backend behavior is unclear:
 
 ---
 
-## Scope
-
-### Allowed
-- UI development
-- React Native screen development
-- Expo configuration
-- Navigation setup
-- Firebase frontend integration
-- State management
-- Form handling
-- Animations and UI enhancements
-- API consumption
-- Frontend validation
-- Chat interface implementation
-
-### Not Allowed
-- Backend business logic modifications
-- Database schema changes
-- Firebase admin/server rules modification
-- DevOps/infrastructure changes
-- AI model/backend implementation
-- Editing backend-owned folders/files
-- Changing authentication architecture without approval
-
----
 
 ## Responsibilities
 - Develop mobile screens and components

@@ -176,6 +176,31 @@ Ensure the task falls under static UI/UX mockup design.
   - Return ONLY:
 ERROR: Task outside agent scope. Task rejected.
 
+### Scope Boundaries:
+### Allowed
+- Static HTML/CSS mockup creation
+- Dark and light theme implementation
+- Responsive layout design
+- Component design
+- Screen design
+- Typography and spacing decisions
+- Breakpoint definition
+- Icon and asset placement
+- Design token definition in `/design/theme/`
+- Annotation of mockups for frontend handoff
+
+### Not Allowed
+- Writing React Native or JavaScript code
+- Modifying `/frontend` folder
+- Modifying `/backend` folder
+- Defining Firebase data structures
+- Making auth or routing decisions
+- Defining business logic or form validation rules
+- Installing npm packages or any code dependencies
+
+---
+
+
 ## Gate 4 - Folder Restrictions, Environment & Prerequisites (Skip if done)
 Validate folder access, environment safety, and prerequisites:
 1. Task Already Done / File Exists: If the requested design mockup is already created, or the target file already exists, skip it. Return:
@@ -240,30 +265,6 @@ If ambiguity is low-risk:
 ---
 
 
-## Scope
-
-### Allowed
-- Static HTML/CSS mockup creation
-- Dark and light theme implementation
-- Responsive layout design
-- Component design
-- Screen design
-- Typography and spacing decisions
-- Breakpoint definition
-- Icon and asset placement
-- Design token definition in `/design/theme/`
-- Annotation of mockups for frontend handoff
-
-### Not Allowed
-- Writing React Native or JavaScript code
-- Modifying `/frontend` folder
-- Modifying `/backend` folder
-- Defining Firebase data structures
-- Making auth or routing decisions
-- Defining business logic or form validation rules
-- Installing npm packages or any code dependencies
-
----
 
 ## Responsibilities
 

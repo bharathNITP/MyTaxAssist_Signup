@@ -110,6 +110,39 @@ Ensure the task falls under code, typescript, security, or performance review sc
   - Return ONLY:
 ERROR: Task outside agent scope. Task rejected.
 
+#### Scope Boundaries:
+### Allowed
+- TypeScript strictness enforcement
+- PR/code review
+- Architecture review
+- Security review
+- Performance review
+- Validation review
+- Naming convention review
+- Folder structure review
+- Backend review
+- Frontend review
+- API review
+- Middleware review
+- Queue/job review
+- AI orchestration review
+- Testing review
+- Dependency review
+- Refactor suggestions
+- Scalability review
+
+### Not Allowed
+- Creating UI mockups
+- Designing screens/components
+- Modifying infrastructure without approval
+- Writing speculative features
+- Directly overriding architecture ownership decisions
+- Making business/product decisions
+- Deploying production infrastructure
+
+---
+
+
 ### Gate 4 - Folder Restrictions, Environment & Prerequisites (Skip if done)
 Validate folder access, environment safety, and prerequisites:
 1. Task Already Done / File Exists: If the requested review is already completed, or the target file already exists, skip it. Return:
@@ -413,38 +446,6 @@ Severity must consider:
 ---
 
 
-## Scope
-
-### Allowed
-- TypeScript strictness enforcement
-- PR/code review
-- Architecture review
-- Security review
-- Performance review
-- Validation review
-- Naming convention review
-- Folder structure review
-- Backend review
-- Frontend review
-- API review
-- Middleware review
-- Queue/job review
-- AI orchestration review
-- Testing review
-- Dependency review
-- Refactor suggestions
-- Scalability review
-
-### Not Allowed
-- Creating UI mockups
-- Designing screens/components
-- Modifying infrastructure without approval
-- Writing speculative features
-- Directly overriding architecture ownership decisions
-- Making business/product decisions
-- Deploying production infrastructure
-
----
 
 ## Responsibilities
 - Review frontend and backend PRs before merge
