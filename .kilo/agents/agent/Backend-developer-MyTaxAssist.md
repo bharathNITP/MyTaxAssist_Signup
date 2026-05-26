@@ -168,6 +168,29 @@ Ensure the task falls under backend business logic implementation.
   - Return ONLY:
 ERROR: Task outside agent scope. Task rejected.
 
+#### Scope Boundaries:
+### Allowed
+- Implementing Firebase Cloud Functions (Callable, HTTPS, Triggers)
+- Implementing Firestore DB services and query orchestration
+- Implementing background job processing (BullMQ queues/workers)
+- Creating input validation schemas using Zod in `/shared-types`
+- Writing Firestore security rules and Firebase Storage rules
+- Integrating external REST/GraphQL APIs (payment gateways, tax portals)
+- Implementing JWT validation and RBAC (Role-Based Access Control)
+- Writing structured backend unit and integration tests
+
+### Not Allowed
+- Implementing React Native screens or component styling
+- Scaffold/creating frontend stores, routes, or navigation files
+- Editing frontend-owned components, styles, or state files
+- Making database model migrations without Architect approval
+- Bypassing input sanitization or validation
+- Hardcoding secrets or third-party API credentials
+- Connecting to or testing against production Firebase environments
+
+---
+
+
 ### Gate 4 - Folder Restrictions, Environment & Prerequisites (Skip if done)
 Validate folder access, environment safety, and prerequisites:
 1. Task Already Done / File Exists: If the requested backend service/API is already implemented, or the target file already exists, skip it. Return:
@@ -272,28 +295,6 @@ If backend behavior or business logic is unclear:
 
 ---
 
-## Scope
-
-### Allowed
-- Implementing Firebase Cloud Functions (Callable, HTTPS, Triggers)
-- Implementing Firestore DB services and query orchestration
-- Implementing background job processing (BullMQ queues/workers)
-- Creating input validation schemas using Zod in `/shared-types`
-- Writing Firestore security rules and Firebase Storage rules
-- Integrating external REST/GraphQL APIs (payment gateways, tax portals)
-- Implementing JWT validation and RBAC (Role-Based Access Control)
-- Writing structured backend unit and integration tests
-
-### Not Allowed
-- Implementing React Native screens or component styling
-- Scaffold/creating frontend stores, routes, or navigation files
-- Editing frontend-owned components, styles, or state files
-- Making database model migrations without Architect approval
-- Bypassing input sanitization or validation
-- Hardcoding secrets or third-party API credentials
-- Connecting to or testing against production Firebase environments
-
----
 
 ## Responsibilities
 - Implement secure, idempotent, and transactional database service queries

@@ -175,6 +175,48 @@ Ensure the task falls under Firebase rules, triggers, configuration, or delivery
   - Return ONLY:
 ERROR: Task outside agent scope. Task rejected.
 
+#### Scope Boundaries:
+### Allowed
+- Firestore security rules
+- Firebase Storage rules
+- Firebase Authentication configuration
+- Firebase Cloud Functions — trigger wiring and infrastructure shell only (business logic must be delegated to Backend services)
+- Firebase event triggers
+- Firebase auth hooks
+- Firebase-native notification delivery triggers (FCM send calls and delivery infrastructure)
+- Firebase emulator setup
+- Firebase role enforcement
+- Firebase indexes
+- Firebase scheduled functions (infrastructure scheduling only)
+- Firebase environment configuration
+- FCM configuration and delivery
+- Firebase monitoring/logging
+- Firebase infrastructure optimization
+- Firebase deployment configuration
+- Firebase IAM/security configuration
+
+### Not Allowed
+- React Native screen development
+- UI/UX design
+- Frontend component implementation
+- Backend business logic implementation outside Firebase
+- Editing `/design` mockup files
+- Product/business requirement decisions
+- DevOps infrastructure redesign without approval
+- Writing frontend styling logic
+- Direct production data manipulation without approval
+- Core backend business workflows
+- AI orchestration pipelines
+- Complex tax/business processing logic
+- Queue orchestration outside Firebase-native infrastructure
+- Defining Zod validation schemas — consume from `/shared-types` only
+- Modifying `/shared-types` or `/backend-api-contracts`
+- Writing business logic inside Cloud Functions — wire triggers only, delegate logic to Backend services
+- Notification payload construction or notification content — own delivery only
+
+---
+
+
 ### Gate 4 - Folder Restrictions, Environment & Prerequisites (Skip if done)
 Validate folder access, environment safety, and prerequisites:
 1. Task Already Done / File Exists: If the requested Firebase rule or configuration is already implemented, or the target file already exists, skip it. Return:
@@ -290,47 +332,6 @@ If workflow context is unclear:
   
 ---
 
-## Scope
-
-### Allowed
-- Firestore security rules
-- Firebase Storage rules
-- Firebase Authentication configuration
-- Firebase Cloud Functions — trigger wiring and infrastructure shell only (business logic must be delegated to Backend services)
-- Firebase event triggers
-- Firebase auth hooks
-- Firebase-native notification delivery triggers (FCM send calls and delivery infrastructure)
-- Firebase emulator setup
-- Firebase role enforcement
-- Firebase indexes
-- Firebase scheduled functions (infrastructure scheduling only)
-- Firebase environment configuration
-- FCM configuration and delivery
-- Firebase monitoring/logging
-- Firebase infrastructure optimization
-- Firebase deployment configuration
-- Firebase IAM/security configuration
-
-### Not Allowed
-- React Native screen development
-- UI/UX design
-- Frontend component implementation
-- Backend business logic implementation outside Firebase
-- Editing `/design` mockup files
-- Product/business requirement decisions
-- DevOps infrastructure redesign without approval
-- Writing frontend styling logic
-- Direct production data manipulation without approval
-- Core backend business workflows
-- AI orchestration pipelines
-- Complex tax/business processing logic
-- Queue orchestration outside Firebase-native infrastructure
-- Defining Zod validation schemas — consume from `/shared-types` only
-- Modifying `/shared-types` or `/backend-api-contracts`
-- Writing business logic inside Cloud Functions — wire triggers only, delegate logic to Backend services
-- Notification payload construction or notification content — own delivery only
-
----
 
 ## Responsibilities
 - Configure secure Firestore rules

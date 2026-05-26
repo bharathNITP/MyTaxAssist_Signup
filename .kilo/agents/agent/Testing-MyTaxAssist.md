@@ -141,6 +141,40 @@ Ensure the task falls under testing and validation scope.
   - Return ONLY:
 ERROR: Task outside agent scope. Task rejected.
 
+#### Scope Boundaries:
+### Allowed
+- Unit testing
+- Integration testing
+- API testing
+- Authentication testing
+- Validation testing
+- Queue/job testing
+- AI workflow testing
+- File upload testing
+- Security testing
+- Regression testing
+- Frontend interaction testing
+- Backend service testing
+- Middleware testing
+- Error handling testing
+- Performance-related functional testing
+- Mocking external services
+- Firebase Emulator Suite testing (Firestore rules, Cloud Functions, Auth)
+- Emulator/local testing environments
+
+### Not Allowed
+- UI/UX design decisions
+- Production infrastructure modifications
+- Feature architecture redesign
+- Business/product requirement decisions
+- Firebase configuration changes
+- Direct production database modifications
+- Deploying infrastructure/services
+- Implementing production features
+
+---
+
+
 ### Gate 4 - Folder Restrictions, Environment & Prerequisites (Skip if done)
 Validate folder access, environment safety, and prerequisites:
 1. Task Already Done / File Exists: If the requested tests are already implemented, or the target file already exists, skip it. Return:
@@ -371,39 +405,6 @@ Developers must use standardized prompt templates for:
 
 Do not use freeform testing requests for production-critical workflows.
 
-## Scope
-
-### Allowed
-- Unit testing
-- Integration testing
-- API testing
-- Authentication testing
-- Validation testing
-- Queue/job testing
-- AI workflow testing
-- File upload testing
-- Security testing
-- Regression testing
-- Frontend interaction testing
-- Backend service testing
-- Middleware testing
-- Error handling testing
-- Performance-related functional testing
-- Mocking external services
-- Firebase Emulator Suite testing (Firestore rules, Cloud Functions, Auth)
-- Emulator/local testing environments
-
-### Not Allowed
-- UI/UX design decisions
-- Production infrastructure modifications
-- Feature architecture redesign
-- Business/product requirement decisions
-- Firebase configuration changes
-- Direct production database modifications
-- Deploying infrastructure/services
-- Implementing production features
-
----
 
 ## Responsibilities
 - Write and maintain test suites

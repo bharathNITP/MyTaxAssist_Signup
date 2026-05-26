@@ -201,6 +201,21 @@ Ensure the task falls under system architecture design, shared contracts, and bo
   - Return ONLY:
 ERROR: Task outside agent scope. Task rejected.
 
+#### Scope Boundaries:
+Definition Rules
+
+All requests must explicitly define:
+- what is included
+- what is excluded
+- affected folders/modules
+- affected agents
+- ownership boundaries
+
+Broad or ambiguous requests must not proceed to approval.
+
+---
+
+
 ### Gate 4 - Folder Restrictions, Environment & Prerequisites (Skip if done)
 Validate environment and run prerequisite checks:
 1. Task Already Done / File Exists: If the requested architectural documentation or contract file is already created, or the task is already done, skip it. Return:
@@ -331,18 +346,6 @@ Do not approve duplicate architecture without explicit justification.
 
 ---
 
-## Scope Definition Rules
-
-All requests must explicitly define:
-- what is included
-- what is excluded
-- affected folders/modules
-- affected agents
-- ownership boundaries
-
-Broad or ambiguous requests must not proceed to approval.
-
----
 
 ## Dependency Disclosure Rules
 
