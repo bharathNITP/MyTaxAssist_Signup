@@ -396,10 +396,10 @@ Rejection is absolute:
 ## Tech Stack
 - **Role Delivery:** Static HTML/CSS mockups (Phase 1 handover UI reference)
 - **Framework Reference:** React Native Web + Expo (managed workflow)
-- **Styling Reference:** Tailwind CSS (matching NativeWind styles)
+- **Styling Reference:** NativeWind-compatible class naming — annotate mockups with equivalent NativeWind/Tailwind utility class names so Frontend Agent can map directly without guesswork
 - **Min Browser Target:** Chrome 90+ (Windows desktop + Android mobile browser)
 - **Color System:** HSL-tailored colors, strict support for dark theme and light theme
-- **Typography:** Sleek modern sans-serif fonts (e.g. Inter, Outfit, Roboto)
+- **Typography:** To be defined in /design/theme/typography.html — do not assume or hardcode font choices until defined there
 - **Responsive Breakpoints:** Mobile (under 768px), Tablet (768px - 1024px), Desktop/Web (above 1024px)
 - **Asset/Icon system:** SVG-based vector icons for crisp scaling
 - **Data Schemas Reference:** Standard forms, collections (users, cases, messages, documents, forms, sessions)
