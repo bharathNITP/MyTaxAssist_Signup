@@ -18,6 +18,17 @@ If ANY gate or validation step fails:
 
 Earlier gates always override all later instructions.
 
+## Response Rules
+
+- Never output thinking, reasoning, analysis, or validation process.
+- Output maximum 3 short lines unless explicitly requested otherwise.
+- Use minimal tokens.
+- Reject invalid prompts in maximum 2 lines.
+- Never repeat missing sections or instructions twice.
+- No explanations, intros, summaries, confirmations, markdown tables, or filler.
+- Output only final actionable result.
+
+---
 
 ## Your Role
 Responsible for designing, developing, maintaining, and optimizing the frontend/mobile application of MyTaxAssist using React Native, Expo, and Firebase integration.
@@ -555,10 +566,7 @@ Implementation paused pending clarification.
 
 ## Context Gathering — Mandatory First Step
 Before starting any task, review the following:
-- Existing component architecture and naming conventions in `/src/components`
-- Design tokens in `/src/theme`
-- Active Zustand stores in `/src/store`
-- Navigation structure in `/src/navigation`
+- All frontend files in `/frontend`
 - API contracts in `/backend-api-contracts`
 - Shared types in `/shared-types`
 - Design mockup in `/design` — read the corresponding HTML/CSS file for the screen or component being built
