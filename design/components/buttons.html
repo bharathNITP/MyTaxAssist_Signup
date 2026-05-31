@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>buttons</title>
-</head>
-<body>
-  <h1>buttons</h1>
-</body>
-</html>
+<html lang="en"><head><meta charset="UTF-8"><title>MyTaxAssist Buttons</title><style>
+:root{--bg:#f2ede4;--surface:#fff;--card:#fafaf8;--border:#e0d8cc;--accent:#b8861e;--accentLight:#d4a030;--accentBg:rgba(184,134,30,.10);--text:#1c1610;--textSub:#4a3c28;--muted:#8a7860;--success:#059669;--warning:#d97706;--danger:#dc2626;--info:#2563eb;--hover:rgba(0,0,0,.03)}
+*{box-sizing:border-box}body{margin:0;padding:32px;font-family:Segoe UI,system-ui,sans-serif;background:var(--bg);color:var(--text)}.wrap{max-width:1100px;margin:auto}.section{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px;margin:0 0 22px}.row{display:flex;gap:14px;align-items:center;flex-wrap:wrap}.btn{border:0;border-radius:9px;padding:10px 16px;font:700 13px Segoe UI,system-ui;cursor:pointer;display:inline-flex;gap:8px;align-items:center;justify-content:center;min-height:38px}.primary{background:linear-gradient(135deg,var(--accent),var(--accentLight));color:#fff}.secondary{background:var(--card);border:1px solid var(--border);color:var(--textSub)}.ghost{background:transparent;border:1px solid var(--border);color:var(--muted)}.link{background:transparent;color:var(--accent);padding:0;min-height:auto}.pill{border-radius:20px;padding:7px 16px;background:var(--surface);border:1.5px solid var(--border);color:var(--textSub)}.filter-active{background:var(--accentBg);border:1px solid rgba(184,134,30,.35);color:var(--accent)}.icon{width:36px;height:36px;padding:0;border-radius:9px;background:transparent;border:1px solid var(--border);color:var(--muted);font-size:16px}.send{width:44px;height:44px;padding:0;border-radius:11px;background:linear-gradient(135deg,var(--accent),var(--accentLight));color:#fff;font-size:18px}.danger{background:var(--danger);color:#fff}.badge{background:var(--border);color:var(--muted);border-radius:10px;padding:0 6px;font-size:10px;font-weight:800}code{background:var(--card);border:1px solid var(--border);padding:3px 6px;border-radius:5px;color:var(--textSub)}
+@media(max-width:767px){body{padding:16px}.btn{width:100%}.icon,.send{width:44px}.row{align-items:stretch}}
+</style></head><body><main class="wrap"><h1>Buttons</h1><p>Button components extracted from the MyTaxAssist client JSX.</p>
+<section class="section"><h2>Primary Actions</h2><div class="row"><button class="btn primary">+ Add Profile</button><button class="btn primary">✎ Request Correction</button><button class="btn send">➤</button></div><p><code>Use for main CTA, submit, add profile, request correction, send message.</code></p></section>
+<section class="section"><h2>Secondary / Utility</h2><div class="row"><button class="btn secondary">📥 Download PDF</button><button class="btn secondary">⬆ Upload File</button><button class="btn ghost">🔔</button><button class="btn ghost">◑</button><button class="btn icon">📞</button><button class="btn icon">ℹ</button><button class="btn icon">⋯</button></div></section>
+<section class="section"><h2>Pills / Quick Replies / Filters</h2><div class="row"><button class="btn pill">Salaried</button><button class="btn pill">Self-employed</button><button class="btn pill">Both</button><button class="btn pill filter-active">All <span class="badge">3</span></button><button class="btn pill">Pending <span class="badge">1</span></button></div></section>
+<section class="section"><h2>Danger</h2><div class="row"><button class="btn danger">Delete</button><button class="btn ghost">✕ Close</button></div></section>
+</main></body></html>

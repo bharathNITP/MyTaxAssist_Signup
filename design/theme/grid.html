@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MyTaxAssist - Grid</title>
+</head>
+<body style="font-family: Segoe UI, system-ui, sans-serif; background:#f2ede4; color:#1c1610; padding:24px;">
+
+  <h1>MyTaxAssist Grid System</h1>
+
+  <h2>Main Application Layout</h2>
+
+  <div style="display:grid; grid-template-columns:280px 1fr 340px; gap:0; height:420px; border:1px solid #e0d8cc;">
+
+    <div style="background:#ffffff; padding:16px; border-right:1px solid #e0d8cc;">
+      <b>Left Panel</b><br>
+      Width: 280px<br>
+      Used for cases, filters, profile list
+    </div>
+
+    <div style="background:#fafaf8; padding:16px; border-right:1px solid #e0d8cc;">
+      <b>Main Chat Area</b><br>
+      Flexible width<br>
+      Used for chat, messages, primary interaction
+    </div>
+
+    <div style="background:#ffffff; padding:16px;">
+      <b>Right Panel</b><br>
+      Width: 340px<br>
+      Used for documents, forms, status, details
+    </div>
+
+  </div>
+
+  <h2>Recommended Layout Rules</h2>
+
+  <ul>
+    <li>Top navigation height: 60px</li>
+    <li>Left sidebar width: 280px</li>
+    <li>Right information panel width: 340px</li>
+    <li>Form drawer width: 420px</li>
+    <li>Desktop content uses 3-column structure</li>
+    <li>Tablet may collapse right panel below chat</li>
+    <li>Mobile should use single-column stacked layout</li>
+  </ul>
+
+</body>
+</html>

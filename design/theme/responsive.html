@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MyTaxAssist Responsive Rules</title>
+
+<style>
+body {
+  font-family: Segoe UI, system-ui, sans-serif;
+  background: #f2ede4;
+  color: #1c1610;
+  padding: 32px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  margin-bottom: 32px;
+}
+
+th, td {
+  border: 1px solid #e0d8cc;
+  padding: 14px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #fafaf8;
+}
+
+code {
+  background: #fafaf8;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.section {
+  background: #ffffff;
+  border: 1px solid #e0d8cc;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MyTaxAssist Responsive Design Rules</h1>
+
+<div class="section">
+  <h2>Breakpoint Tokens</h2>
+
+  <table>
+    <tr>
+      <th>Device</th>
+      <th>Width</th>
+      <th>Rule</th>
+    </tr>
+    <tr>
+      <td>Desktop</td>
+      <td><code>1280px and above</code></td>
+      <td>Use full 3-column layout.</td>
+    </tr>
+    <tr>
+      <td>Laptop</td>
+      <td><code>1024px - 1279px</code></td>
+      <td>Keep sidebar. Reduce right panel width or make it collapsible.</td>
+    </tr>
+    <tr>
+      <td>Tablet</td>
+      <td><code>768px - 1023px</code></td>
+      <td>Collapse right panel into drawer or below main content.</td>
+    </tr>
+    <tr>
+      <td>Mobile</td>
+      <td><code>Below 768px</code></td>
+      <td>Use single-column layout.</td>
+    </tr>
+  </table>
+</div>
+
+<div class="section">
+  <h2>Main Layout Behaviour</h2>
+
+  <table>
+    <tr>
+      <th>Area</th>
+      <th>Desktop</th>
+      <th>Tablet</th>
+      <th>Mobile</th>
+    </tr>
+    <tr>
+      <td>Left Sidebar</td>
+      <td>Fixed width: <code>280px</code></td>
+      <td>Collapsible drawer</td>
+      <td>Hidden behind menu button</td>
+    </tr>
+    <tr>
+      <td>Main Chat Area</td>
+      <td>Flexible center area</td>
+      <td>Full width after sidebar collapse</td>
+      <td>Full width single column</td>
+    </tr>
+    <tr>
+      <td>Right Document/Form Panel</td>
+      <td>Fixed width: <code>340px</code></td>
+      <td>Drawer or below chat</td>
+      <td>Bottom sheet / full-screen panel</td>
+    </tr>
+    <tr>
+      <td>Top Header</td>
+      <td>Height: <code>60px</code></td>
+      <td>Height: <code>56px</code></td>
+      <td>Height: <code>52px</code></td>
+    </tr>
+  </table>
+</div>
+
+<div class="section">
+  <h2>Standard Media Queries</h2>
+
+  <pre><code>@media (max-width: 1279px) {
+  /* Laptop adjustments */
+}
+
+@media (max-width: 1023px) {
+  /* Tablet layout */
+}
+
+@media (max-width: 767px) {
+  /* Mobile layout */
+}</code></pre>
+</div>
+
+<div class="section">
+  <h2>Form Responsiveness</h2>
+
+  <table>
+    <tr>
+      <th>Screen Size</th>
+      <th>Form Layout</th>
+    </tr>
+    <tr>
+      <td>Desktop</td>
+      <td>Use 2-column forms where space allows.</td>
+    </tr>
+    <tr>
+      <td>Tablet</td>
+      <td>Use 1-column or compact 2-column layout.</td>
+    </tr>
+    <tr>
+      <td>Mobile</td>
+      <td>Always use 1-column full-width inputs.</td>
+    </tr>
+  </table>
+</div>
+
+<div class="section">
+  <h2>Chat Responsiveness</h2>
+
+  <table>
+    <tr>
+      <th>Element</th>
+      <th>Desktop</th>
+      <th>Mobile</th>
+    </tr>
+    <tr>
+      <td>Message Bubble</td>
+      <td>Maximum width: <code>70%</code></td>
+      <td>Maximum width: <code>88%</code></td>
+    </tr>
+    <tr>
+      <td>Chat Input</td>
+      <td>Fixed at bottom of chat area</td>
+      <td>Fixed at bottom, full width</td>
+    </tr>
+    <tr>
+      <td>Attachments</td>
+      <td>Shown in right panel</td>
+      <td>Shown in bottom sheet or document tab</td>
+    </tr>
+  </table>
+</div>
+
+<div class="section">
+  <h2>Navigation Responsiveness</h2>
+
+  <table>
+    <tr>
+      <th>Screen Size</th>
+      <th>Navigation Rule</th>
+    </tr>
+    <tr>
+      <td>Desktop</td>
+      <td>Use persistent left sidebar.</td>
+    </tr>
+    <tr>
+      <td>Tablet</td>
+      <td>Use collapsible sidebar.</td>
+    </tr>
+    <tr>
+      <td>Mobile</td>
+      <td>Use hamburger menu or bottom navigation.</td>
+    </tr>
+  </table>
+</div>
+
+<div class="section">
+  <h2>Agent Rules</h2>
+
+  <ul>
+    <li>Every screen HTML must include responsive media queries.</li>
+    <li>Use the same breakpoint values across all screens.</li>
+    <li>Do not create screen-specific breakpoints unless required.</li>
+    <li>Desktop designs should follow the full application layout.</li>
+    <li>Mobile designs should prioritize chat, forms, and document upload actions.</li>
+    <li>Right-side panels should never remain squeezed on mobile.</li>
+  </ul>
+</div>
+
+</body>
+</html>
+

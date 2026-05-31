@@ -1,7 +1,4 @@
 {
-  "projectId": "mytaxassist",
-  "version": "1.0.0",
-  "agentConfig": {
-    "agentsDir": "./.kilo/agents"
-  }
+  "$schema": "https://app.kilo.ai/config.json",
+ 
 }

@@ -1,10 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>colors</title>
+<meta charset="UTF-8">
+<title>MyTaxAssist Colors</title>
+<style>
+body {
+  font-family: Segoe UI, system-ui, sans-serif;
+  background: #f5f5f5;
+  padding: 32px;
+  color: #222;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+th, td {
+  padding: 14px;
+  border: 1px solid #ddd;
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  background: #f0f0f0;
+}
+.color-box {
+  width: 120px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-bottom: 6px;
+}
+.token {
+  font-weight: 700;
+}
+</style>
 </head>
+
 <body>
-  <h1>colors</h1>
+
+<h1>MyTaxAssist Color System</h1>
+
+<table>
+  <tr>
+    <th>Token</th>
+    <th>Light Theme</th>
+    <th>Dark Theme</th>
+    <th>Usage</th>
+  </tr>
+
+  <tr>
+    <td class="token">Primary Accent</td>
+    <td><div class="color-box" style="background:#b8861e"></div>#b8861e</td>
+    <td><div class="color-box" style="background:#c8972a"></div>#c8972a</td>
+    <td>Primary buttons, highlights, key actions</td>
+  </tr>
+
+  <tr>
+    <td class="token">Background</td>
+    <td><div class="color-box" style="background:#f2ede4"></div>#f2ede4</td>
+    <td><div class="color-box" style="background:#0a0e1a"></div>#0a0e1a</td>
+    <td>Main app background</td>
+  </tr>
+
+  <tr>
+    <td class="token">Surface</td>
+    <td><div class="color-box" style="background:#ffffff"></div>#ffffff</td>
+    <td><div class="color-box" style="background:#111827"></div>#111827</td>
+    <td>Main panels and containers</td>
+  </tr>
+
+  <tr>
+    <td class="token">Card</td>
+    <td><div class="color-box" style="background:#fafaf8"></div>#fafaf8</td>
+    <td><div class="color-box" style="background:#151f30"></div>#151f30</td>
+    <td>Cards, widgets, message groups</td>
+  </tr>
+
+  <tr>
+    <td class="token">Border</td>
+    <td><div class="color-box" style="background:#e0d8cc"></div>#e0d8cc</td>
+    <td><div class="color-box" style="background:#1e2d45"></div>#1e2d45</td>
+    <td>Dividers, outlines, separators</td>
+  </tr>
+
+  <tr>
+    <td class="token">Text Primary</td>
+    <td><div class="color-box" style="background:#1c1610"></div>#1c1610</td>
+    <td><div class="color-box" style="background:#eef2ff"></div>#eef2ff</td>
+    <td>Main readable text</td>
+  </tr>
+
+  <tr>
+    <td class="token">Text Secondary</td>
+    <td><div class="color-box" style="background:#4a3c28"></div>#4a3c28</td>
+    <td><div class="color-box" style="background:#b8c4d8"></div>#b8c4d8</td>
+    <td>Labels and subtitles</td>
+  </tr>
+
+  <tr>
+    <td class="token">Text Muted</td>
+    <td><div class="color-box" style="background:#8a7860"></div>#8a7860</td>
+    <td><div class="color-box" style="background:#7f93b3"></div>#7f93b3</td>
+    <td>Hints, timestamps, metadata</td>
+  </tr>
+
+  <tr>
+    <td class="token">Success</td>
+    <td><div class="color-box" style="background:#059669"></div>#059669</td>
+    <td><div class="color-box" style="background:#10b981"></div>#10b981</td>
+    <td>Approved, completed</td>
+  </tr>
+
+  <tr>
+    <td class="token">Warning</td>
+    <td><div class="color-box" style="background:#d97706"></div>#d97706</td>
+    <td><div class="color-box" style="background:#f59e0b"></div>#f59e0b</td>
+    <td>Pending, review required</td>
+  </tr>
+
+  <tr>
+    <td class="token">Danger</td>
+    <td><div class="color-box" style="background:#dc2626"></div>#dc2626</td>
+    <td><div class="color-box" style="background:#ef4444"></div>#ef4444</td>
+    <td>Error, rejected, delete</td>
+  </tr>
+
+  <tr>
+    <td class="token">Info</td>
+    <td><div class="color-box" style="background:#2563eb"></div>#2563eb</td>
+    <td><div class="color-box" style="background:#60a5fa"></div>#60a5fa</td>
+    <td>Information, links, notes</td>
+  </tr>
+
+</table>
+
 </body>
 </html>
