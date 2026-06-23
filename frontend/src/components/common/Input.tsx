@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, TextInputProps } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, TextInputProps, Platform } from "react-native";
 
 interface InputProps extends Omit<TextInputProps, "className"> {
   label?: string;
@@ -21,7 +21,7 @@ export default function Input({ label, error, rightIcon, onRightIconPress, requi
         </Text>
       ) : null}
       <View className={"flex-row items-center rounded-lg border bg-surface px-3 py-2.5 " + borderColor}>
-        <TextInput className="flex-1 text-base text-textprimary" placeholderTextColor="#8a7860" onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} {...props} />
+        <TextInput className="flex-1 text-base text-textprimary" style={Platform.OS === 'web' ? ({ outlineStyle: 'none', borderWidth: 0 } as any) : undefined} placeholderTextColor="#8a7860" onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} {...props} />
         {rightIcon ? (
           <TouchableOpacity onPress={onRightIconPress} className="ml-2 p-1" accessibilityRole="button" accessibilityLabel={props.secureTextEntry ? "Show password" : "Hide password"}>
             {rightIcon}

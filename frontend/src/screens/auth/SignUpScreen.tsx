@@ -10,7 +10,15 @@ import { authStore } from "../../stores/authStore";
 
 const schema = yup.object({
   email: yup.string().required("Email is required").email("Enter a valid email"),
-  password: yup.string().required("Password is required").min(8, "Password must be at least 8 characters"),
+  password: yup
+    .string()
+    .required("Password is required")
+    .min(8, "Password must be at least 8 characters")
+    .max(32, "Password must be at most 32 characters")
+    .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+    .matches(/[a-z]/, "Password must contain at least one lowercase letter")
+    .matches(/[0-9]/, "Password must contain at least one number")
+    .matches(/[@$!%*?&#]/, "Password must contain at least one special character (@$!%*?&#)"),
   confirmPassword: yup.string().required("Please confirm your password").oneOf([yup.ref("password")], "Passwords do not match"),
 });
 
