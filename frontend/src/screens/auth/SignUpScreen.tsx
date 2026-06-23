@@ -1,12 +1,12 @@
-﻿import React, { useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { View, Text, ScrollView, TouchableOpacity, useWindowDimensions, Platform } from "react-native";
 import { useRouter } from "expo-router";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import Input from "../../src/components/common/Input";
-import Button from "../../src/components/common/Button";
-import { authStore } from "../../src/stores/authStore";
+import Input from "../../components/common/Input";
+import Button from "../../components/common/Button";
+import { authStore } from "../../stores/authStore";
 
 const schema = yup.object({
   email: yup.string().required("Email is required").email("Enter a valid email"),

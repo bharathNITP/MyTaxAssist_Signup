@@ -1,8 +1,9 @@
 export const firebaseConfig = {
-  apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.EXPO_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.EXPO_PUBLIC_FIREBASE_APP_ID,
+  apiKey: "AIzaSyAFHUBMLE3bXs_vAcwSXaXCGz2_GJ9aqO8",
+  authDomain: "mtass-df7fc.firebaseapp.com",
+  projectId: "mtass-df7fc",
+  storageBucket: "mtass-df7fc.firebasestorage.app",
+  messagingSenderId: "407224607003",
+  appId: "1:407224607003:web:5a28a53c7392cad59833be",
+  measurementId: "G-ZS56P1R2BX",
 };

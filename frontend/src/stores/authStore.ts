@@ -1,28 +1,17 @@
 import { create } from 'zustand';
 import {
   getAuth,
-  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
   User,
 } from 'firebase/auth';
 import { initializeApp, getApps } from 'firebase/app';
-import { getFunctions, httpsCallable } from 'firebase/functions';
 import { firebaseConfig } from '../config/firebase';
-import { SignUpRequest, SignUpResponse } from '../../../backend-api-contracts/auth.contracts';
 
-function getFirebase() {
-  const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
-  const auth = getAuth(app);
-  const functions = getFunctions(app);
-  return { auth, functions };
-}
-
-// Use the local emulators in development
-if (process.env.NODE_ENV === 'development') {
-  // If you need emulator setups, they can be configured here.
-  // For now, we assume standard Firebase client config connection.
-}
+const app =
+  getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+const auth = getAuth(app);
 
 export type AuthErrorCode =
   | 'auth/email-already-in-use'
@@ -63,22 +52,8 @@ export const authStore = create<AuthStoreState>((set) => ({
   signUp: async (email: string, password: string) => {
     set({ loading: true, error: null });
     try {
-      const { auth, functions } = getFirebase();
-      // 1. Call the backend middleware (Cloud Function)
-      const signUpUserFn = httpsCallable<SignUpRequest, SignUpResponse>(
-        functions,
-        'signUpUser'
-      );
-      const result = await signUpUserFn({ email, password });
-
-      if (result.data.success) {
-        // 2. Sign in the user on the client side since the backend created the user
-        const cred = await signInWithEmailAndPassword(auth, email, password);
-        set({ user: cred.user, loading: false });
-      } else {
-        const code = result.data.errorCode || 'unknown';
-        set({ error: getErrorMessage(code), loading: false });
-      }
+      const cred = await createUserWithEmailAndPassword(auth, email, password);
+      set({ user: cred.user, loading: false });
     } catch (err: unknown) {
       const code =
         err && typeof err === 'object' && 'code' in err
@@ -91,7 +66,6 @@ export const authStore = create<AuthStoreState>((set) => ({
   signInWithGoogle: async () => {
     set({ loading: true, error: null });
     try {
-      const { auth } = getFirebase();
       const provider = new GoogleAuthProvider();
       const cred = await signInWithPopup(auth, provider);
       set({ user: cred.user, loading: false });

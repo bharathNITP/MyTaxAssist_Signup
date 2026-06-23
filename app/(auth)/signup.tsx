@@ -1,4 +1,4 @@
-﻿import SignUpScreen from "../../frontend/screens/auth/SignUpScreen";
+import SignUpScreen from "../../frontend/src/screens/auth/SignUpScreen";
 
 export default function signup() {
   return <SignUpScreen />;
