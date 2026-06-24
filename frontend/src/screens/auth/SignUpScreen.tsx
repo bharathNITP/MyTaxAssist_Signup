@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Input from "../../components/common/Input";
 import Button from "../../components/common/Button";
+import GuidelinesModal from "../../components/auth/GuidelinesModal";
 import { authStore } from "../../stores/authStore";
 
 const schema = yup.object({
@@ -40,6 +41,7 @@ export default function SignUpScreen() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [generalError, setGeneralError] = useState<string | null>(null);
+  const [guidelinesVisible, setGuidelinesVisible] = useState(false);
 
   const { control, handleSubmit, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(schema),
@@ -100,10 +102,12 @@ export default function SignUpScreen() {
           Existing member? <Text className="text-info underline" onPress={() => router.push("/(auth)/login")}>Sign In here</Text>
         </Text>
 
-        <TouchableOpacity className="mt-4 items-center" onPress={() => {}}>
+        <TouchableOpacity className="mt-4 items-center" onPress={() => setGuidelinesVisible(true)}>
           <Text className="text-sm font-bold text-warning underline">Click Here to view guidelines to use this app</Text>
         </TouchableOpacity>
       </View>
+
+      <GuidelinesModal visible={guidelinesVisible} onClose={() => setGuidelinesVisible(false)} />
     </ScrollView>
   );
 
