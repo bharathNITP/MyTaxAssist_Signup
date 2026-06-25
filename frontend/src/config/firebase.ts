@@ -1,9 +1,9 @@
 export const firebaseConfig = {
-  apiKey: "AIzaSyAFHUBMLE3bXs_vAcwSXaXCGz2_GJ9aqO8",
-  authDomain: "mtass-df7fc.firebaseapp.com",
-  projectId: "mtass-df7fc",
-  storageBucket: "mtass-df7fc.firebasestorage.app",
-  messagingSenderId: "407224607003",
-  appId: "1:407224607003:web:5a28a53c7392cad59833be",
-  measurementId: "G-ZS56P1R2BX",
+  apiKey: "AIzaSyCWFmAsSwqxIcUQJiutkXiOg2BttW9eU9o",
+  authDomain: "mtassist-5eafc.firebaseapp.com",
+  projectId: "mtassist-5eafc",
+  storageBucket: "mtassist-5eafc.firebasestorage.app",
+  messagingSenderId: "995946073086",
+  appId: "1:995946073086:web:3856983564555828104eaf",
+  measurementId: "G-DE9JF0C5FT"
 };
