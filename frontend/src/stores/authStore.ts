@@ -1,17 +1,12 @@
 import { create } from 'zustand';
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithPopup,
-  GoogleAuthProvider,
-  User,
-} from 'firebase/auth';
-import { initializeApp, getApps } from 'firebase/app';
-import { firebaseConfig } from '../config/firebase';
 
-const app =
-  getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
-const auth = getAuth(app);
+// The URL of Bharath's Middleware endpoint (Cloud Function)
+const MIDDLEWARE_URL = process.env.EXPO_PUBLIC_MIDDLEWARE_URL || 'http://localhost:5001/mtassist-5eafc/us-central1/signUpUser';
+
+export interface UserState {
+  uid: string;
+  email: string;
+}
 
 export type AuthErrorCode =
   | 'auth/email-already-in-use'
@@ -36,7 +31,7 @@ function getErrorMessage(code: string): string {
 }
 
 interface AuthStoreState {
-  user: User | null;
+  user: UserState | null;
   loading: boolean;
   error: string | null;
   signUp: (email: string, password: string) => Promise<void>;
@@ -52,29 +47,50 @@ export const authStore = create<AuthStoreState>((set) => ({
   signUp: async (email: string, password: string) => {
     set({ loading: true, error: null });
     try {
-      const cred = await createUserWithEmailAndPassword(auth, email, password);
-      set({ user: cred.user, loading: false });
-    } catch (err: unknown) {
-      const code =
-        err && typeof err === 'object' && 'code' in err
-          ? (err as { code: string }).code
-          : 'unknown';
-      set({ error: getErrorMessage(code), loading: false });
+      // Call the middleware API using standard fetch
+      const response = await fetch(MIDDLEWARE_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          data: { email, password },
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const json = await response.json();
+      const result = json.result;
+
+      if (result && result.success) {
+        set({
+          user: {
+            uid: result.user.uid,
+            email: result.user.email,
+          },
+          loading: false,
+        });
+      } else {
+        const code = result?.errorCode || 'unknown';
+        set({ error: getErrorMessage(code), loading: false });
+      }
+    } catch (err: any) {
+      console.error('Error in signUp connection:', err);
+      set({ error: err.message || 'Connection to middleware failed', loading: false });
     }
   },
 
   signInWithGoogle: async () => {
     set({ loading: true, error: null });
     try {
-      const provider = new GoogleAuthProvider();
-      const cred = await signInWithPopup(auth, provider);
-      set({ user: cred.user, loading: false });
-    } catch (err: unknown) {
-      const code =
-        err && typeof err === 'object' && 'code' in err
-          ? (err as { code: string }).code
-          : 'unknown';
-      set({ error: getErrorMessage(code), loading: false });
+      // Mock Google Sign-In or connect to another OAuth middleware endpoint
+      console.log('Google Sign-In clicked (Redirect to OAuth middleware URL)');
+      set({ loading: false });
+    } catch (err: any) {
+      set({ error: 'Google sign in failed', loading: false });
     }
   },
 
