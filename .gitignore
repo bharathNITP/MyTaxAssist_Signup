@@ -1,3 +1,13 @@
+
+# Backend secrets
+backend/.env
+backend/.env.local
+backend/.env.production
+
+# Frontend secrets  
+.env.development
+frontend/.env.development
+
 # Expo
 .expo/
 dist/

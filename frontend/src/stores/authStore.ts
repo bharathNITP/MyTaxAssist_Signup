@@ -1,98 +1,122 @@
-import { create } from 'zustand';
+import { create } from "zustand";
+import {
+  registerWithEmail,
+  registerWithGoogle,
+  ApiError,
+} from "../services/apiClient";
+import { initializeApp, getApps } from "firebase/app";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithEmailAndPassword,
+  UserCredential,
+} from "firebase/auth";
 
-// The URL of Bharath's Middleware endpoint (Cloud Function)
-const MIDDLEWARE_URL = process.env.EXPO_PUBLIC_MIDDLEWARE_URL || 'http://localhost:5001/mtassist-5eafc/us-central1/signUpUser';
+const firebaseConfig = {
+  apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.EXPO_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.EXPO_PUBLIC_FIREBASE_APP_ID,
+};
+
+function getFirebaseAuth() {
+  const app =
+    getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+  return getAuth(app);
+}
 
 export interface UserState {
   uid: string;
   email: string;
 }
 
-export type AuthErrorCode =
-  | 'auth/email-already-in-use'
-  | 'auth/weak-password'
-  | 'auth/invalid-email'
-  | 'auth/operation-not-allowed'
-  | 'auth/popup-closed-by-user'
-  | 'auth/cancelled-popup-request'
-  | 'unknown';
-
-const errorMessages: Record<string, string> = {
-  'auth/email-already-in-use': 'This email is already registered.',
-  'auth/weak-password': 'Password must be at least 8 characters.',
-  'auth/invalid-email': 'Enter a valid email address.',
-  'auth/operation-not-allowed': 'Email/password sign up is not enabled.',
-  'auth/popup-closed-by-user': 'Google sign in was cancelled.',
-  'auth/cancelled-popup-request': 'Google sign in was cancelled.',
-};
-
-function getErrorMessage(code: string): string {
-  return errorMessages[code] || 'Something went wrong. Please try again.';
-}
-
 interface AuthStoreState {
   user: UserState | null;
   loading: boolean;
   error: string | null;
-  signUp: (email: string, password: string) => Promise<void>;
+  isNewUser: boolean | null;
+  signUp: (email: string, password: string, confirmPassword: string) => Promise<void>;
   signInWithGoogle: () => Promise<void>;
   clearError: () => void;
+  reset: () => void;
 }
 
 export const authStore = create<AuthStoreState>((set) => ({
   user: null,
   loading: false,
   error: null,
+  isNewUser: null,
 
-  signUp: async (email: string, password: string) => {
+  signUp: async (email: string, password: string, confirmPassword: string) => {
     set({ loading: true, error: null });
     try {
-      // Call the middleware API using standard fetch
-      const response = await fetch(MIDDLEWARE_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          data: { email, password },
-        }),
+      const result = await registerWithEmail(email, password, confirmPassword);
+      const auth = getFirebaseAuth();
+      await signInWithEmailAndPassword(auth, email, password);
+      set({
+        user: { uid: result.uid, email: result.email },
+        isNewUser: true,
+        loading: false,
       });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+    } catch (err: unknown) {
+      const apiErr = err as ApiError;
+      let message = "Something went wrong. Please try again.";
+      if (apiErr.status === 409) {
+        message = "Email already registered";
+      } else if (apiErr.status === 400) {
+        message = apiErr.message;
       }
-
-      const json = await response.json();
-      const result = json.result;
-
-      if (result && result.success) {
-        set({
-          user: {
-            uid: result.user.uid,
-            email: result.user.email,
-          },
-          loading: false,
-        });
-      } else {
-        const code = result?.errorCode || 'unknown';
-        set({ error: getErrorMessage(code), loading: false });
-      }
-    } catch (err: any) {
-      console.error('Error in signUp connection:', err);
-      set({ error: err.message || 'Connection to middleware failed', loading: false });
+      set({ error: message, loading: false });
     }
   },
 
   signInWithGoogle: async () => {
     set({ loading: true, error: null });
     try {
-      // Mock Google Sign-In or connect to another OAuth middleware endpoint
-      console.log('Google Sign-In clicked (Redirect to OAuth middleware URL)');
-      set({ loading: false });
-    } catch (err: any) {
-      set({ error: 'Google sign in failed', loading: false });
+      const auth = getFirebaseAuth();
+      const provider = new GoogleAuthProvider();
+      provider.addScope("email");
+      provider.addScope("profile");
+
+      const credential: UserCredential = await signInWithPopup(auth, provider);
+      const idToken: string = await credential.user.getIdToken();
+
+      const result = await registerWithGoogle(idToken);
+      set({
+        user: { uid: result.uid, email: result.email },
+        isNewUser: result.isNewUser ?? false,
+        loading: false,
+      });
+    } catch (err: unknown) {
+      const apiErr = err as ApiError;
+      if (apiErr.status) {
+        const message =
+          apiErr.status === 400
+            ? "Invalid Google token. Please try again."
+            : "Something went wrong with Google sign in. Please try again.";
+        set({ error: message, loading: false });
+        return;
+      }
+      const firebaseErr = err as { code?: string; message?: string };
+      if (
+        firebaseErr.code === "auth/popup-closed-by-user" ||
+        firebaseErr.code === "auth/cancelled-popup-request"
+      ) {
+        set({ error: null, loading: false });
+        return;
+      }
+      set({
+        error: "Google Sign-In failed. Please try again.",
+        loading: false,
+      });
     }
   },
 
   clearError: () => set({ error: null }),
+
+  reset: () =>
+    set({ user: null, loading: false, error: null, isNewUser: null }),
 }));

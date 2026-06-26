@@ -43,25 +43,35 @@ export default function SignUpScreen() {
   const [generalError, setGeneralError] = useState<string | null>(null);
   const [guidelinesVisible, setGuidelinesVisible] = useState(false);
 
+  const loading = authStore((state) => state.loading);
+
   const { control, handleSubmit, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(schema),
     defaultValues: { email: "", password: "", confirmPassword: "" },
   });
 
+  const isLoading = isSubmitting || loading;
+
   const onSubmit = useCallback(async (data: { email: string; password: string; confirmPassword: string }) => {
     setGeneralError(null);
-    await authStore.getState().signUp(data.email, data.password);
+    await authStore.getState().signUp(data.email, data.password, data.confirmPassword);
     const state = authStore.getState();
-    if (state.error) { setGeneralError(state.error); }
-    else if (state.user) { router.replace("/(staff)/dashboard"); }
+    if (state.error) {
+      setGeneralError(state.error);
+    } else if (state.user) {
+      router.replace("/(client)/dashboard");
+    }
   }, [router]);
 
   const handleGoogleSignUp = useCallback(async () => {
     setGeneralError(null);
     await authStore.getState().signInWithGoogle();
     const state = authStore.getState();
-    if (state.error) { setGeneralError(state.error); }
-    else if (state.user) { router.replace("/(staff)/dashboard"); }
+    if (state.error) {
+      setGeneralError(state.error);
+    } else if (state.user) {
+      router.replace("/(client)/dashboard");
+    }
   }, [router]);
 
   const formPanel = (
@@ -73,30 +83,30 @@ export default function SignUpScreen() {
         <Text className="mb-6 text-center text-sm text-textsecondary">Sign up with your email</Text>
 
         {generalError ? (
-          <View className="mb-4 rounded-lg bg-danger/10 p-3">
+          <View className="mb-4 rounded-lg bg-danger/10 p-3" accessibilityRole="alert">
             <Text className="text-sm text-danger">{generalError}</Text>
           </View>
         ) : null}
 
         <Controller control={control} name="email" render={({ field: { onChange, onBlur, value } }) => (
-          <Input label="Sign up with your Email" placeholder="Email" required keyboardType="email-address" autoCapitalize="none" autoComplete="email" value={value} onChangeText={onChange} onBlur={onBlur} error={errors.email?.message} />
+          <Input label="Sign up with your Email" placeholder="Email" required keyboardType="email-address" autoCapitalize="none" autoComplete="email" value={value} onChangeText={onChange} onBlur={onBlur} error={errors.email?.message} editable={!isLoading} />
         )} />
 
         <Controller control={control} name="password" render={({ field: { onChange, onBlur, value } }) => (
-          <Input label="Create Password" placeholder="Password" required secureTextEntry={!showPassword} autoCapitalize="none" autoComplete="new-password" value={value} onChangeText={onChange} onBlur={onBlur} error={errors.password?.message} rightIcon={<EyeIcon visible={showPassword} />} onRightIconPress={() => setShowPassword((p) => !p)} />
+          <Input label="Create Password" placeholder="Password" required secureTextEntry={!showPassword} autoCapitalize="none" autoComplete="new-password" value={value} onChangeText={onChange} onBlur={onBlur} error={errors.password?.message} editable={!isLoading} rightIcon={<EyeIcon visible={showPassword} />} onRightIconPress={() => setShowPassword((p) => !p)} />
         )} />
 
         <Controller control={control} name="confirmPassword" render={({ field: { onChange, onBlur, value } }) => (
-          <Input label="Re enter Password" placeholder="Confirm Password" required secureTextEntry={!showConfirmPassword} autoCapitalize="none" autoComplete="new-password" value={value} onChangeText={onChange} onBlur={onBlur} error={errors.confirmPassword?.message} rightIcon={<EyeIcon visible={showConfirmPassword} />} onRightIconPress={() => setShowConfirmPassword((p) => !p)} />
+          <Input label="Re enter Password" placeholder="Confirm Password" required secureTextEntry={!showConfirmPassword} autoCapitalize="none" autoComplete="new-password" value={value} onChangeText={onChange} onBlur={onBlur} error={errors.confirmPassword?.message} editable={!isLoading} rightIcon={<EyeIcon visible={showConfirmPassword} />} onRightIconPress={() => setShowConfirmPassword((p) => !p)} />
         )} />
 
-        <Button title="Continue" onPress={handleSubmit(onSubmit)} loading={isSubmitting} className="mb-4 mt-2" />
+        <Button title="Continue" onPress={handleSubmit(onSubmit)} loading={isSubmitting} disabled={isLoading} className="mb-4 mt-2" />
 
         <Text className="mb-6 text-center text-xs text-textmuted">
           By continuing you agree to our <Text className="text-info underline">Terms and Conditions</Text> and <Text className="text-info underline">Privacy Policy</Text>.
         </Text>
 
-        <Button title="Sign up with Google" onPress={handleGoogleSignUp} variant="google" className="mb-6" />
+        <Button title="Sign up with Google" onPress={handleGoogleSignUp} variant="google" loading={loading} disabled={isLoading} className="mb-6" />
 
         <Text className="text-center text-sm text-textsecondary">
           Existing member? <Text className="text-info underline" onPress={() => router.push("/(auth)/login")}>Sign In here</Text>
