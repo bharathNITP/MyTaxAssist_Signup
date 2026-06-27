@@ -1,3 +1,6 @@
+
+// Registration page
+
 import React, { useState, useCallback } from "react";
 import { View, Text, ScrollView, TouchableOpacity, useWindowDimensions, Platform } from "react-native";
 import { useRouter } from "expo-router";
