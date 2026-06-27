@@ -25,6 +25,9 @@
     },
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "apiBaseUrl": "http://localhost:3001"
+    }
   }
 }
