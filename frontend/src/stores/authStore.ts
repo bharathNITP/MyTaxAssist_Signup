@@ -35,7 +35,8 @@ export interface UserState {
 
 interface AuthStoreState {
   user: UserState | null;
-  loading: boolean;
+  emailLoading: boolean;
+  googleLoading: boolean;
   error: string | null;
   isNewUser: boolean | null;
   signUp: (email: string, password: string, confirmPassword: string) => Promise<void>;
@@ -46,12 +47,13 @@ interface AuthStoreState {
 
 export const authStore = create<AuthStoreState>((set) => ({
   user: null,
-  loading: false,
+  emailLoading: false,
+  googleLoading: false,
   error: null,
   isNewUser: null,
 
   signUp: async (email: string, password: string, confirmPassword: string) => {
-    set({ loading: true, error: null });
+     set({ emailLoading: true, error: null });
     try {
       const result = await registerWithEmail(email, password, confirmPassword);
       const auth = getFirebaseAuth();
@@ -59,7 +61,7 @@ export const authStore = create<AuthStoreState>((set) => ({
       set({
         user: { uid: result.uid, email: result.email },
         isNewUser: true,
-        loading: false,
+        emailLoading: false,
       });
     } catch (err: unknown) {
       const apiErr = err as ApiError;
@@ -69,12 +71,12 @@ export const authStore = create<AuthStoreState>((set) => ({
       } else if (apiErr.status === 400) {
         message = apiErr.message;
       }
-      set({ error: message, loading: false });
+       set({ error: message, emailLoading: false });
     }
   },
 
   signInWithGoogle: async () => {
-    set({ loading: true, error: null });
+   set({ googleLoading: true, error: null });
     try {
       const auth = getFirebaseAuth();
       const provider = new GoogleAuthProvider();
@@ -88,7 +90,7 @@ export const authStore = create<AuthStoreState>((set) => ({
       set({
         user: { uid: result.uid, email: result.email },
         isNewUser: result.isNewUser ?? false,
-        loading: false,
+         googleLoading: false,
       });
     } catch (err: unknown) {
       const apiErr = err as ApiError;
@@ -97,7 +99,7 @@ export const authStore = create<AuthStoreState>((set) => ({
           apiErr.status === 400
             ? "Invalid Google token. Please try again."
             : "Something went wrong with Google sign in. Please try again.";
-        set({ error: message, loading: false });
+        set({ error: message, googleLoading: false });
         return;
       }
       const firebaseErr = err as { code?: string; message?: string };
@@ -105,12 +107,12 @@ export const authStore = create<AuthStoreState>((set) => ({
         firebaseErr.code === "auth/popup-closed-by-user" ||
         firebaseErr.code === "auth/cancelled-popup-request"
       ) {
-        set({ error: null, loading: false });
+        set({ error: null, googleLoading: false });
         return;
       }
       set({
         error: "Google Sign-In failed. Please try again.",
-        loading: false,
+       googleLoading: false,
       });
     }
   },
@@ -118,5 +120,5 @@ export const authStore = create<AuthStoreState>((set) => ({
   clearError: () => set({ error: null }),
 
   reset: () =>
-    set({ user: null, loading: false, error: null, isNewUser: null }),
+    set({ user: null, emailLoading: false, googleLoading: false, error: null, isNewUser: null }),
 }));
