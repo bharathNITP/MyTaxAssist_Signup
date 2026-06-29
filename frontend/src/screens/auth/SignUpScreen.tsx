@@ -46,14 +46,15 @@ export default function SignUpScreen() {
   const [generalError, setGeneralError] = useState<string | null>(null);
   const [guidelinesVisible, setGuidelinesVisible] = useState(false);
 
-  const loading = authStore((state) => state.loading);
+  const emailLoading = authStore((state) => state.emailLoading);
+  const googleLoading = authStore((state) => state.googleLoading);
 
   const { control, handleSubmit, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(schema),
     defaultValues: { email: "", password: "", confirmPassword: "" },
   });
 
-  const isLoading = isSubmitting || loading;
+  const isLoading = isSubmitting || emailLoading || googleLoading;
 
   const onSubmit = useCallback(async (data: { email: string; password: string; confirmPassword: string }) => {
     setGeneralError(null);
@@ -109,7 +110,7 @@ export default function SignUpScreen() {
           By continuing you agree to our <Text className="text-info underline">Terms and Conditions</Text> and <Text className="text-info underline">Privacy Policy</Text>.
         </Text>
 
-        <Button title="Sign up with Google" onPress={handleGoogleSignUp} variant="google" loading={loading} disabled={isLoading} className="mb-6" />
+        <Button title="Sign up with Google" onPress={handleGoogleSignUp} variant="google" loading={googleLoading} disabled={isLoading} className="mb-6" />
 
         <Text className="text-center text-sm text-textsecondary">
           Existing member? <Text className="text-info underline" onPress={() => router.push("/(auth)/login")}>Sign In here</Text>

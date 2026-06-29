@@ -6,7 +6,6 @@
 
 const API_BASE_URL: string =
   (process.env.EXPO_PUBLIC_API_BASE_URL as string) || 'http://localhost:3001';
-  
 
 export interface RegisterEmailRequest {
   email: string;
